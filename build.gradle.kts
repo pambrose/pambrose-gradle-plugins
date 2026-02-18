@@ -1,12 +1,12 @@
 plugins {
   `kotlin-dsl`
   `maven-publish`
-  id("java-gradle-plugin")
-  id("com.github.ben-manes.versions") version "0.53.0"
+  `java-gradle-plugin`
+  alias(libs.plugins.ben.manes.versions)
 }
 
 group = "com.pambrose.gradle-plugins"
-version = "1.0.1"
+version = "1.0.2"
 
 repositories {
   mavenCentral()
@@ -14,9 +14,16 @@ repositories {
 }
 
 dependencies {
-  implementation("org.jetbrains.kotlin:kotlin-gradle-plugin:2.3.10")
-  implementation("com.github.ben-manes:gradle-versions-plugin:0.53.0")
-  implementation("org.jmailen.gradle:kotlinter-gradle:5.4.2")
+  implementation(libs.kotlin.gradle.plugin)
+  implementation(libs.gradle.versions.plugin)
+  implementation(libs.kotlinter.gradle)
+
+  testImplementation(libs.kotest.runner.junit5)
+  testImplementation(libs.kotest.assertions.core)
+}
+
+tasks.test {
+  useJUnitPlatform()
 }
 
 fun NamedDomainObjectContainer<PluginDeclaration>.plugin(
@@ -33,11 +40,11 @@ fun NamedDomainObjectContainer<PluginDeclaration>.plugin(
 gradlePlugin {
   plugins {
     plugin("EnvVarPlugin", "envvar")
-    plugin("ExcludeBetasPlugin", "exclude-betas")
+    plugin("StableVersionsPlugin", "stable-versions")
     plugin("PublishingPlugin", "publishing")
     plugin("ReposPlugin", "repos")
     plugin("SnapshotPlugin", "snapshot")
     plugin("KotlinterPlugin", "kotlinter")
-    plugin("TestPlugin", "test")
+    plugin("TestingPlugin", "testing")
   }
 }

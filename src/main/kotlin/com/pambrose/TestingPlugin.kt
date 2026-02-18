@@ -6,7 +6,7 @@ import org.gradle.api.tasks.testing.Test
 import org.gradle.api.tasks.testing.logging.TestLogEvent
 import org.gradle.kotlin.dsl.withType
 
-class TestPlugin : Plugin<Project> {
+class TestingPlugin : Plugin<Project> {
   override fun apply(project: Project) {
     with(project) {
       // pluginManager.apply("org.jetbrains.kotlin.jvm")

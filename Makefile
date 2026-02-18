@@ -9,6 +9,9 @@ clean:
 build: clean
 	./gradlew build -x test
 
+tests:
+	./gradlew test
+
 tree:
 	./gradlew -q dependencies
 
