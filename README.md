@@ -16,7 +16,8 @@ component.
 
 ### `com.pambrose.stable-versions`
 
-Configures the ben-manes `dependencyUpdates` task to reject RC, beta, alpha, and milestone versions.
+Applies the ben-manes `versions` plugin and configures the `dependencyUpdates` task to reject RC, beta, alpha, and
+milestone versions. Consumers do not need to apply `com.github.ben-manes.versions` separately.
 
 ### `com.pambrose.envvar`
 

@@ -6,9 +6,13 @@ import org.gradle.kotlin.dsl.withType
 
 class StableVersionsPlugin : Plugin<Project> {
   override fun apply(project: Project) {
-    project.tasks.withType<com.github.benmanes.gradle.versions.updates.DependencyUpdatesTask> {
-      rejectVersionIf {
-        isNonStable(candidate.version)
+    with(project) {
+      pluginManager.apply("com.github.ben-manes.versions")
+
+      tasks.withType<com.github.benmanes.gradle.versions.updates.DependencyUpdatesTask> {
+        rejectVersionIf {
+          isNonStable(candidate.version)
+        }
       }
     }
   }

@@ -1,8 +1,8 @@
 plugins {
   `kotlin-dsl`
   `maven-publish`
-  id("java-gradle-plugin")
-  id("com.github.ben-manes.versions") version "0.53.0"
+  `java-gradle-plugin`
+  alias(libs.plugins.ben.manes.versions)
 }
 
 group = "com.pambrose.gradle-plugins"
@@ -14,12 +14,12 @@ repositories {
 }
 
 dependencies {
-  implementation("org.jetbrains.kotlin:kotlin-gradle-plugin:2.3.10")
-  implementation("com.github.ben-manes:gradle-versions-plugin:0.53.0")
-  implementation("org.jmailen.gradle:kotlinter-gradle:5.4.2")
+  implementation(libs.kotlin.gradle.plugin)
+  implementation(libs.gradle.versions.plugin)
+  implementation(libs.kotlinter.gradle)
 
-  testImplementation("io.kotest:kotest-runner-junit5:6.1.3")
-  testImplementation("io.kotest:kotest-assertions-core:6.1.3")
+  testImplementation(libs.kotest.runner.junit5)
+  testImplementation(libs.kotest.assertions.core)
 }
 
 tasks.test {
