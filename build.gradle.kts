@@ -21,10 +21,10 @@ fun NamedDomainObjectContainer<PluginDeclaration>.plugin(
   name: String,
   id: String,
 ) {
-  val base = "com.pambrose"
+  val packageName = "com.pambrose"
   create(name) {
-    this.id = "$base.$id"
-    this.implementationClass = "$base.$name"
+    this.id = "$packageName.$id"
+    this.implementationClass = "$packageName.$name"
   }
 }
 
