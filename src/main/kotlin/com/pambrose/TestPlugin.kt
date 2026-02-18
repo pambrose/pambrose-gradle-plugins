@@ -11,16 +11,14 @@ class TestPlugin : Plugin<Project> {
     with(project) {
       // pluginManager.apply("org.jetbrains.kotlin.jvm")
 
-      // repositories.mavenCentral()
-
-//      extensions.configure(KotlinJvmExtension::class.java) {
-//        jvmToolchain(21)
-//      }
-
       tasks.withType<Test> {
         useJUnitPlatform()
-        testLogging.events = setOf(TestLogEvent.PASSED, TestLogEvent.SKIPPED, TestLogEvent.FAILED)
-        testLogging.showStandardStreams = true
+        testLogging {
+          // events("passed", "skipped", "failed", "standardOut", "standardError")
+          events = TestLogEvent.entries.toSet() // setOf(TestLogEvent.PASSED, TestLogEvent.SKIPPED, TestLogEvent.FAILED)
+          exceptionFormat = org.gradle.api.tasks.testing.logging.TestExceptionFormat.FULL
+          showStandardStreams = true
+        }
       }
     }
   }

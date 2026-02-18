@@ -23,6 +23,15 @@ Configures the ben-manes `dependencyUpdates` task to reject RC, beta, alpha, and
 Loads environment variables from `secrets/secrets.env` into all `JavaExec` and `Test` tasks. Lines starting with `#`
 and blank lines are ignored.
 
+### `com.pambrose.kotlinter`
+
+Applies the [kotlinter](https://github.com/jeremymailen/kotlinter-gradle) plugin and configures it with `checkstyle` and
+`plain` reporters.
+
+### `com.pambrose.repos`
+
+Adds Google, Maven Central, and JitPack repositories to the project.
+
 ### `com.pambrose.snapshot`
 
 Disables Gradle caching for changing (SNAPSHOT) modules so they are always re-resolved.
@@ -57,16 +66,47 @@ In your **build.gradle.kts**, apply the desired plugins using a Git tag, commit 
 
 ```kotlin
 plugins {
-  id("com.pambrose.test") version "Tag"
-  id("com.pambrose.publishing") version "Tag"
-  id("com.pambrose.exclude-betas") version "Tag"
   id("com.pambrose.envvar") version "Tag"
+  id("com.pambrose.exclude-betas") version "Tag"
+  id("com.pambrose.kotlinter") version "Tag"
+  id("com.pambrose.publishing") version "Tag"
+  id("com.pambrose.repos") version "Tag"
   id("com.pambrose.snapshot") version "Tag"
+  id("com.pambrose.test") version "Tag"
 }
 ```
 
-Replace `Tag` with a GitHub release tag (e.g., `1.0.0`), a short commit hash, or `main-SNAPSHOT` for the latest commit
+Replace `Tag` with a GitHub release tag (e.g., `1.0.1`), a short commit hash, or `main-SNAPSHOT` for the latest commit
 on `main`.
+
+### From Maven Central
+
+In your **settings.gradle.kts**, add Maven Central to the plugin repositories:
+
+```kotlin
+pluginManagement {
+  repositories {
+    mavenCentral()
+    gradlePluginPortal()
+  }
+}
+```
+
+In your **build.gradle.kts**, apply the desired plugins:
+
+```kotlin
+plugins {
+  id("com.pambrose.envvar") version "1.0.1"
+  id("com.pambrose.exclude-betas") version "1.0.1"
+  id("com.pambrose.kotlinter") version "1.0.1"
+  id("com.pambrose.publishing") version "1.0.1"
+  id("com.pambrose.repos") version "1.0.1"
+  id("com.pambrose.snapshot") version "1.0.1"
+  id("com.pambrose.test") version "1.0.1"
+}
+```
+
+No `resolutionStrategy` is needed — Gradle resolves plugin marker artifacts directly from Maven Central.
 
 ### From Local Maven
 
@@ -91,11 +131,13 @@ In your **build.gradle.kts**:
 
 ```kotlin
 plugins {
-  id("com.pambrose.test") version "1.0.0"
-  id("com.pambrose.publishing") version "1.0.0"
-  id("com.pambrose.exclude-betas") version "1.0.0"
-  id("com.pambrose.envvar") version "1.0.0"
-  id("com.pambrose.snapshot") version "1.0.0"
+  id("com.pambrose.envvar") version "1.0.1"
+  id("com.pambrose.exclude-betas") version "1.0.1"
+  id("com.pambrose.kotlinter") version "1.0.1"
+  id("com.pambrose.publishing") version "1.0.1"
+  id("com.pambrose.repos") version "1.0.1"
+  id("com.pambrose.snapshot") version "1.0.1"
+  id("com.pambrose.test") version "1.0.1"
 }
 ```
 
