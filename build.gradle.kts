@@ -17,6 +17,13 @@ dependencies {
   implementation("org.jetbrains.kotlin:kotlin-gradle-plugin:2.3.10")
   implementation("com.github.ben-manes:gradle-versions-plugin:0.53.0")
   implementation("org.jmailen.gradle:kotlinter-gradle:5.4.2")
+
+  testImplementation("io.kotest:kotest-runner-junit5:6.1.3")
+  testImplementation("io.kotest:kotest-assertions-core:6.1.3")
+}
+
+tasks.test {
+  useJUnitPlatform()
 }
 
 fun NamedDomainObjectContainer<PluginDeclaration>.plugin(
@@ -38,6 +45,6 @@ gradlePlugin {
     plugin("ReposPlugin", "repos")
     plugin("SnapshotPlugin", "snapshot")
     plugin("KotlinterPlugin", "kotlinter")
-    plugin("TestPlugin", "test")
+    plugin("TestingPlugin", "testing")
   }
 }

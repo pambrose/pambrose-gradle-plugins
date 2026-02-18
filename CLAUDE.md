@@ -32,7 +32,7 @@ the arguments.
 
 | Plugin ID                      | Class                  | Purpose                                                                    |
 |--------------------------------|------------------------|----------------------------------------------------------------------------|
-| `com.pambrose.test`            | `TestPlugin`           | Configures JUnit Platform with verbose test logging                        |
+| `com.pambrose.testing`         | `TestingPlugin`        | Configures JUnit Platform with verbose test logging                        |
 | `com.pambrose.publishing`      | `PublishingPlugin`     | Sets up `maven-publish` with sources JAR and a Maven publication           |
 | `com.pambrose.stable-versions` | `StableVersionsPlugin` | Filters RC/beta/alpha/milestone versions from `dependencyUpdates` results  |
 | `com.pambrose.envvar`          | `EnvVarPlugin`         | Loads env vars from `secrets/secrets.env` into `JavaExec` and `Test` tasks |
