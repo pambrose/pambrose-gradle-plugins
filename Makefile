@@ -7,7 +7,7 @@ clean:
 	./gradlew clean
 
 build: clean
-	./gradlew jar buildFatJar
+	./gradlew build -x test
 
 tree:
 	./gradlew -q dependencies
