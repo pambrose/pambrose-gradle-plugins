@@ -15,6 +15,7 @@ repositories {
 dependencies {
   implementation("org.jetbrains.kotlin:kotlin-gradle-plugin:2.3.10")
   implementation("com.github.ben-manes:gradle-versions-plugin:0.53.0")
+  implementation("org.jmailen.gradle:kotlinter-gradle:5.4.2")
 }
 
 fun NamedDomainObjectContainer<PluginDeclaration>.plugin(
@@ -35,6 +36,7 @@ gradlePlugin {
     plugin("PublishingPlugin", "publishing")
     plugin("ReposPlugin", "repos")
     plugin("SnapshotPlugin", "snapshot")
+    plugin("KotlinterPlugin", "kotlinter")
     plugin("TestPlugin", "test")
   }
 }
