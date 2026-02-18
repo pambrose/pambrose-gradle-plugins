@@ -65,7 +65,7 @@ plugins {
 }
 ```
 
-Replace `Tag` with a GitHub release tag (e.g., `1.0.0`), a short commit hash, or `main-SNAPSHOT` for the latest commit
+Replace `Tag` with a GitHub release tag (e.g., `1.0.1`), a short commit hash, or `main-SNAPSHOT` for the latest commit
 on `main`.
 
 ### From Local Maven
@@ -91,11 +91,11 @@ In your **build.gradle.kts**:
 
 ```kotlin
 plugins {
-  id("com.pambrose.test") version "1.0.0"
-  id("com.pambrose.publishing") version "1.0.0"
-  id("com.pambrose.exclude-betas") version "1.0.0"
-  id("com.pambrose.envvar") version "1.0.0"
-  id("com.pambrose.snapshot") version "1.0.0"
+  id("com.pambrose.test") version "1.0.1"
+  id("com.pambrose.publishing") version "1.0.1"
+  id("com.pambrose.exclude-betas") version "1.0.1"
+  id("com.pambrose.envvar") version "1.0.1"
+  id("com.pambrose.snapshot") version "1.0.1"
 }
 ```
 
