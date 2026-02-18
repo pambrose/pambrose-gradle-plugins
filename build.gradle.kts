@@ -6,7 +6,7 @@ plugins {
 }
 
 group = "com.pambrose.gradle-plugins"
-version = "1.0.1"
+version = "1.0.2"
 
 repositories {
   mavenCentral()
@@ -33,7 +33,7 @@ fun NamedDomainObjectContainer<PluginDeclaration>.plugin(
 gradlePlugin {
   plugins {
     plugin("EnvVarPlugin", "envvar")
-    plugin("ExcludeBetasPlugin", "exclude-betas")
+    plugin("StableVersionsPlugin", "stable-versions")
     plugin("PublishingPlugin", "publishing")
     plugin("ReposPlugin", "repos")
     plugin("SnapshotPlugin", "snapshot")
