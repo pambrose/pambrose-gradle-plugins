@@ -4,7 +4,7 @@ plugins {
   id("com.github.ben-manes.versions") version "0.53.0"
 }
 
-group = "com.pambrose.gradle"
+group = "com.pambrose.gradle-plugins"
 version = "1.0.1"
 
 repositories {
