@@ -33,6 +33,7 @@ gradlePlugin {
     plugin("EnvVarPlugin", "envvar")
     plugin("ExcludeBetasPlugin", "exclude-betas")
     plugin("PublishingPlugin", "publishing")
+    plugin("ReposPlugin", "repos")
     plugin("SnapshotPlugin", "snapshot")
     plugin("TestPlugin", "test")
   }

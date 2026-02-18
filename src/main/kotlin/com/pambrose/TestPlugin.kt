@@ -10,7 +10,6 @@ class TestPlugin : Plugin<Project> {
   override fun apply(project: Project) {
     with(project) {
       // pluginManager.apply("org.jetbrains.kotlin.jvm")
-      // repositories.mavenCentral()
 
       tasks.withType<Test> {
         useJUnitPlatform()
