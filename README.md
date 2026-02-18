@@ -68,6 +68,33 @@ plugins {
 Replace `Tag` with a GitHub release tag (e.g., `1.0.1`), a short commit hash, or `main-SNAPSHOT` for the latest commit
 on `main`.
 
+### From Maven Central
+
+In your **settings.gradle.kts**, add Maven Central to the plugin repositories:
+
+```kotlin
+pluginManagement {
+  repositories {
+    mavenCentral()
+    gradlePluginPortal()
+  }
+}
+```
+
+In your **build.gradle.kts**, apply the desired plugins:
+
+```kotlin
+plugins {
+  id("com.pambrose.test") version "1.0.1"
+  id("com.pambrose.publishing") version "1.0.1"
+  id("com.pambrose.exclude-betas") version "1.0.1"
+  id("com.pambrose.envvar") version "1.0.1"
+  id("com.pambrose.snapshot") version "1.0.1"
+}
+```
+
+No `resolutionStrategy` is needed — Gradle resolves plugin marker artifacts directly from Maven Central.
+
 ### From Local Maven
 
 Publish the plugins locally:
