@@ -1,5 +1,6 @@
 package com.pambrose
 
+import com.github.benmanes.gradle.versions.updates.DependencyUpdatesTask
 import org.gradle.api.Plugin
 import org.gradle.api.Project
 import org.gradle.kotlin.dsl.withType
@@ -9,7 +10,7 @@ class StableVersionsPlugin : Plugin<Project> {
     with(project) {
       pluginManager.apply("com.github.ben-manes.versions")
 
-      tasks.withType<com.github.benmanes.gradle.versions.updates.DependencyUpdatesTask> {
+      tasks.withType<DependencyUpdatesTask> {
         notCompatibleWithConfigurationCache("the dependency updates plugin is not compatible with the configuration cache")
         rejectVersionIf {
           isNonStable(candidate.version)
