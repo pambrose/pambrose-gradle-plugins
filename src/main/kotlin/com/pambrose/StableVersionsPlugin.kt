@@ -10,6 +10,7 @@ class StableVersionsPlugin : Plugin<Project> {
       pluginManager.apply("com.github.ben-manes.versions")
 
       tasks.withType<com.github.benmanes.gradle.versions.updates.DependencyUpdatesTask> {
+        notCompatibleWithConfigurationCache("the dependency updates plugin is not compatible with the configuration cache")
         rejectVersionIf {
           isNonStable(candidate.version)
         }
