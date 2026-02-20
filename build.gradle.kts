@@ -1,3 +1,5 @@
+import com.github.benmanes.gradle.versions.updates.DependencyUpdatesTask
+
 plugins {
   `kotlin-dsl`
   `maven-publish`
@@ -6,7 +8,7 @@ plugins {
 }
 
 group = "com.pambrose.gradle-plugins"
-version = "1.0.3"
+version = "1.0.4"
 
 repositories {
   mavenCentral()
@@ -22,8 +24,18 @@ dependencies {
   testImplementation(libs.kotest.assertions.core)
 }
 
+kotlin {
+  jvmToolchain(17)
+}
+
 tasks.test {
   useJUnitPlatform()
+}
+
+tasks.withType<DependencyUpdatesTask> {
+  rejectVersionIf {
+    listOf("-RC", "-BETA", "-ALPHA", "-M").any { candidate.version.uppercase().contains(it) }
+  }
 }
 
 fun NamedDomainObjectContainer<PluginDeclaration>.plugin(

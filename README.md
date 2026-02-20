@@ -22,7 +22,13 @@ milestone versions. Consumers do not need to apply `com.github.ben-manes.version
 ### `com.pambrose.envvar`
 
 Loads environment variables from `secrets/secrets.env` into all `JavaExec` and `Test` tasks. Lines starting with `#`
-and blank lines are ignored.
+and blank lines are ignored. To use a different file, configure the `envvar` extension:
+
+```kotlin
+envvar {
+  filename = "config/my.env"
+}
+```
 
 ### `com.pambrose.kotlinter`
 
@@ -77,7 +83,7 @@ plugins {
 }
 ```
 
-Replace `Tag` with a GitHub release tag (e.g., `1.0.3`), a short commit hash, or `main-SNAPSHOT` for the latest commit
+Replace `Tag` with a GitHub release tag (e.g., `1.0.4`), a short commit hash, or `main-SNAPSHOT` for the latest commit
 on `main`.
 
 ### From Maven Central
@@ -97,13 +103,13 @@ In your **build.gradle.kts**, apply the desired plugins:
 
 ```kotlin
 plugins {
-  id("com.pambrose.envvar") version "1.0.3"
-  id("com.pambrose.stable-versions") version "1.0.3"
-  id("com.pambrose.kotlinter") version "1.0.3"
-  id("com.pambrose.publishing") version "1.0.3"
-  id("com.pambrose.repos") version "1.0.3"
-  id("com.pambrose.snapshot") version "1.0.3"
-  id("com.pambrose.testinging") version "1.0.3"
+  id("com.pambrose.envvar") version "1.0.4"
+  id("com.pambrose.stable-versions") version "1.0.4"
+  id("com.pambrose.kotlinter") version "1.0.4"
+  id("com.pambrose.publishing") version "1.0.4"
+  id("com.pambrose.repos") version "1.0.4"
+  id("com.pambrose.snapshot") version "1.0.4"
+  id("com.pambrose.testinging") version "1.0.4"
 }
 ```
 
@@ -132,13 +138,13 @@ In your **build.gradle.kts**:
 
 ```kotlin
 plugins {
-  id("com.pambrose.envvar") version "1.0.3"
-  id("com.pambrose.stable-versions") version "1.0.3"
-  id("com.pambrose.kotlinter") version "1.0.3"
-  id("com.pambrose.publishing") version "1.0.3"
-  id("com.pambrose.repos") version "1.0.3"
-  id("com.pambrose.snapshot") version "1.0.3"
-  id("com.pambrose.testinging") version "1.0.3"
+  id("com.pambrose.envvar") version "1.0.4"
+  id("com.pambrose.stable-versions") version "1.0.4"
+  id("com.pambrose.kotlinter") version "1.0.4"
+  id("com.pambrose.publishing") version "1.0.4"
+  id("com.pambrose.repos") version "1.0.4"
+  id("com.pambrose.snapshot") version "1.0.4"
+  id("com.pambrose.testinging") version "1.0.4"
 }
 ```
 
@@ -151,7 +157,7 @@ In your **gradle/libs.versions.toml**, define the version and plugin aliases:
 
 ```toml
 [versions]
-pambrose-plugins = "1.0.3"
+pambrose-plugins = "1.0.4"
 
 [plugins]
 pambrose-envvar = { id = "com.pambrose.envvar", version.ref = "pambrose-plugins" }
@@ -191,13 +197,13 @@ Use `apply false` to resolve the plugin version without applying the plugin to t
 
 ```kotlin
 plugins {
-  id("com.pambrose.envvar") version "1.0.3" apply false
-  id("com.pambrose.stable-versions") version "1.0.3" apply false
-  id("com.pambrose.kotlinter") version "1.0.3" apply false
-  id("com.pambrose.publishing") version "1.0.3" apply false
-  id("com.pambrose.repos") version "1.0.3" apply false
-  id("com.pambrose.snapshot") version "1.0.3" apply false
-  id("com.pambrose.testinging") version "1.0.3" apply false
+  id("com.pambrose.envvar") version "1.0.4" apply false
+  id("com.pambrose.stable-versions") version "1.0.4" apply false
+  id("com.pambrose.kotlinter") version "1.0.4" apply false
+  id("com.pambrose.publishing") version "1.0.4" apply false
+  id("com.pambrose.repos") version "1.0.4" apply false
+  id("com.pambrose.snapshot") version "1.0.4" apply false
+  id("com.pambrose.testinging") version "1.0.4" apply false
 }
 ```
 

@@ -74,6 +74,43 @@ class EnvVarPluginTest : StringSpec(
       result.output shouldContain ":printEnv SKIPPED"
     }
 
+    "plugin loads env vars from custom filename" {
+      val projectDir = createTempDirectory("test").toFile()
+      projectDir.resolve("settings.gradle.kts").writeText("""rootProject.name = "test-project"""")
+
+      projectDir.resolve("myfile.env").writeText("CUSTOM_KEY=custom_value")
+
+      projectDir.resolve("build.gradle.kts").writeText(
+        """
+      plugins {
+        java
+        id("com.pambrose.envvar")
+      }
+
+      envvar {
+        filename = "myfile.env"
+      }
+
+      tasks.register<JavaExec>("printEnv") {
+        mainClass.set("does.not.Exist")
+        doFirst {
+          val env = environment
+          require(env["CUSTOM_KEY"] == "custom_value") { "CUSTOM_KEY expected custom_value but got ${'$'}{env["CUSTOM_KEY"]}" }
+          println("CUSTOM_ENV_OK")
+        }
+      }
+      """.trimIndent(),
+      )
+
+      val result = GradleRunner.create()
+        .withProjectDir(projectDir)
+        .withPluginClasspath()
+        .withArguments("printEnv", "--dry-run")
+        .build()
+
+      result.output shouldContain ":printEnv SKIPPED"
+    }
+
     "plugin loads env vars into Test tasks" {
       val projectDir = createTempDirectory("test").toFile()
       projectDir.resolve("settings.gradle.kts").writeText("""rootProject.name = "test-project"""")

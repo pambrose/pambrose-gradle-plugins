@@ -19,7 +19,7 @@ depends:
 	./gradlew dependencies
 
 versioncheck:
-	./gradlew dependencyUpdates
+	./gradlew dependencyUpdates --no-configuration-cache
 
 refresh:
 	./gradlew --refresh-dependencies
