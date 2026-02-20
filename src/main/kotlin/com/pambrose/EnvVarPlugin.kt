@@ -9,6 +9,7 @@ import org.gradle.kotlin.dsl.withType
 
 open class EnvVarExtension {
   var filename: String = "secrets/secrets.env"
+  val vars: MutableMap<String, String> = mutableMapOf()
 }
 
 class EnvVarPlugin : Plugin<Project> {
@@ -27,6 +28,9 @@ class EnvVarPlugin : Plugin<Project> {
               if (idx > 0) line.substring(0, idx) to line.substring(idx + 1) else null
             }
             .toMap()
+
+        // Make the envVars available to other plugins
+        extension.vars.putAll(envVars)
 
         tasks.withType<JavaExec> { environment(envVars) }
         tasks.withType<Test> { environment(envVars) }

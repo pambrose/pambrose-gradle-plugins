@@ -30,6 +30,14 @@ envvar {
 }
 ```
 
+The parsed values are also available via `envvar.vars` for use during build configuration:
+
+```kotlin
+afterEvaluate {
+  println("API_KEY: ${envvar.vars["API_KEY"]}")
+}
+```
+
 ### `com.pambrose.kotlinter`
 
 Applies the [kotlinter](https://github.com/jeremymailen/kotlinter-gradle) plugin and configures it with `checkstyle` and
