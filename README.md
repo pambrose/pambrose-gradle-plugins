@@ -22,7 +22,13 @@ milestone versions. Consumers do not need to apply `com.github.ben-manes.version
 ### `com.pambrose.envvar`
 
 Loads environment variables from `secrets/secrets.env` into all `JavaExec` and `Test` tasks. Lines starting with `#`
-and blank lines are ignored.
+and blank lines are ignored. To use a different file, configure the `envvar` extension:
+
+```kotlin
+envvar {
+  filename = "config/my.env"
+}
+```
 
 ### `com.pambrose.kotlinter`
 
