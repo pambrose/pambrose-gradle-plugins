@@ -16,7 +16,7 @@ class TestingPlugin : Plugin<Project> {
         useJUnitPlatform()
         testLogging {
           // events("passed", "skipped", "failed", "standardOut", "standardError")
-          events = TestLogEvent.entries.toSet() // setOf(TestLogEvent.PASSED, TestLogEvent.SKIPPED, TestLogEvent.FAILED)
+          events = setOf(TestLogEvent.PASSED, TestLogEvent.SKIPPED, TestLogEvent.FAILED)
           exceptionFormat = TestExceptionFormat.FULL
           showStandardStreams = true
         }

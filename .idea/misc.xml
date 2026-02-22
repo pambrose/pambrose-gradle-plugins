@@ -2,5 +2,5 @@
   <component name="ExternalStorageConfigurationManager" enabled="true" />
   <component name="JunieProject">{}</component>
   <component name="KubernetesApiProvider">{}</component>
-  <component name="ProjectRootManager" version="2" languageLevel="JDK_21" project-jdk-name="21" project-jdk-type="JavaSDK" />
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_17" project-jdk-name="21" project-jdk-type="JavaSDK" />
 </project>
