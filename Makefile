@@ -21,10 +21,10 @@ depends:
 	./gradlew dependencies
 
 trigger-build:
-	curl -s "https://jitpack.io/com/github/pambrose/gradle-plugins/${VERSION}/build.log"
+	curl -s "https://jitpack.io/com/github/pambrose/pambrose-gradle-plugins/${VERSION}/build.log"
 
 view-build:
-	curl -s "https://jitpack.io/api/builds/com.github.pambrose/gradle-plugins/${VERSION}" | python3 -m json.tool
+	curl -s "https://jitpack.io/api/builds/com.github.pambrose/pambrose-gradle-plugins/${VERSION}" | python3 -m json.tool
 
 versioncheck:
 	./gradlew dependencyUpdates --no-configuration-cache
