@@ -19,7 +19,7 @@ Gradle projects to share common build configuration. Distributed via JitPack (`c
 - Gradle 9.2.0 with Kotlin DSL
 - Kotlin Gradle Plugin 2.3.10
 - Ben-Manes Versions Plugin 0.53.0
-- Group/artifact: `com.pambrose.gradle:gradle-plugins:1.0.6`
+- Group/artifact: `com.pambrose.gradle:gradle-plugins:1.0.7`
 
 ## Architecture
 
