@@ -1,3 +1,5 @@
+VERSION=1.0.6
+
 default: versioncheck
 
 stop:
@@ -17,6 +19,12 @@ tree:
 
 depends:
 	./gradlew dependencies
+
+trigger-build:
+	curl -s "https://jitpack.io/com/github/pambrose/gradle-plugins/${VERSION}/build.log"
+
+view-build:
+	curl -s "https://jitpack.io/api/builds/com.github.pambrose/gradle-plugins/${VERSION}" | python3 -m json.tool
 
 versioncheck:
 	./gradlew dependencyUpdates --no-configuration-cache
