@@ -17,7 +17,7 @@ class TestingPlugin : Plugin<Project> {
         testLogging {
           events = setOf(TestLogEvent.PASSED, TestLogEvent.SKIPPED, TestLogEvent.FAILED)
           exceptionFormat = TestExceptionFormat.FULL
-          showStandardStreams = true
+          // showStandardStreams = true
         }
       }
     }
