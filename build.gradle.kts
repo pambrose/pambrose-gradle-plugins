@@ -8,7 +8,7 @@ plugins {
 }
 
 group = "com.pambrose.gradle-plugins"
-version = "1.0.7"
+version = "1.0.8"
 
 repositories {
   mavenCentral()

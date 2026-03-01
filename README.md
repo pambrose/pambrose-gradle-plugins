@@ -4,7 +4,7 @@ Shared Gradle convention plugins for Kotlin JVM projects.
 
 ## Available Plugins
 
-### `com.pambrose.testinging`
+### `com.pambrose.testing`
 
 Configures all test tasks to use JUnit Platform with verbose logging (passed/skipped/failed events and standard
 streams).
@@ -87,11 +87,11 @@ plugins {
   id("com.pambrose.publishing") version "Tag"
   id("com.pambrose.repos") version "Tag"
   id("com.pambrose.snapshot") version "Tag"
-  id("com.pambrose.testinging") version "Tag"
+  id("com.pambrose.testing") version "Tag"
 }
 ```
 
-Replace `Tag` with a GitHub release tag (e.g., `1.0.7`), a short commit hash, or `main-SNAPSHOT` for the latest commit
+Replace `Tag` with a GitHub release tag (e.g., `1.0.8`), a short commit hash, or `main-SNAPSHOT` for the latest commit
 on `main`.
 
 ### From Maven Central
@@ -111,13 +111,13 @@ In your **build.gradle.kts**, apply the desired plugins:
 
 ```kotlin
 plugins {
-  id("com.pambrose.envvar") version "1.0.7"
-  id("com.pambrose.stable-versions") version "1.0.7"
-  id("com.pambrose.kotlinter") version "1.0.7"
-  id("com.pambrose.publishing") version "1.0.7"
-  id("com.pambrose.repos") version "1.0.7"
-  id("com.pambrose.snapshot") version "1.0.7"
-  id("com.pambrose.testinging") version "1.0.7"
+  id("com.pambrose.envvar") version "1.0.8"
+  id("com.pambrose.stable-versions") version "1.0.8"
+  id("com.pambrose.kotlinter") version "1.0.8"
+  id("com.pambrose.publishing") version "1.0.8"
+  id("com.pambrose.repos") version "1.0.8"
+  id("com.pambrose.snapshot") version "1.0.8"
+  id("com.pambrose.testing") version "1.0.8"
 }
 ```
 
@@ -146,13 +146,13 @@ In your **build.gradle.kts**:
 
 ```kotlin
 plugins {
-  id("com.pambrose.envvar") version "1.0.7"
-  id("com.pambrose.stable-versions") version "1.0.7"
-  id("com.pambrose.kotlinter") version "1.0.7"
-  id("com.pambrose.publishing") version "1.0.7"
-  id("com.pambrose.repos") version "1.0.7"
-  id("com.pambrose.snapshot") version "1.0.7"
-  id("com.pambrose.testinging") version "1.0.7"
+  id("com.pambrose.envvar") version "1.0.8"
+  id("com.pambrose.stable-versions") version "1.0.8"
+  id("com.pambrose.kotlinter") version "1.0.8"
+  id("com.pambrose.publishing") version "1.0.8"
+  id("com.pambrose.repos") version "1.0.8"
+  id("com.pambrose.snapshot") version "1.0.8"
+  id("com.pambrose.testing") version "1.0.8"
 }
 ```
 
@@ -165,7 +165,7 @@ In your **gradle/libs.versions.toml**, define the version and plugin aliases:
 
 ```toml
 [versions]
-pambrose-plugins = "1.0.7"
+pambrose-plugins = "1.0.8"
 
 [plugins]
 pambrose-envvar = { id = "com.pambrose.envvar", version.ref = "pambrose-plugins" }
@@ -174,7 +174,7 @@ pambrose-kotlinter = { id = "com.pambrose.kotlinter", version.ref = "pambrose-pl
 pambrose-publishing = { id = "com.pambrose.publishing", version.ref = "pambrose-plugins" }
 pambrose-repos = { id = "com.pambrose.repos", version.ref = "pambrose-plugins" }
 pambrose-snapshot = { id = "com.pambrose.snapshot", version.ref = "pambrose-plugins" }
-pambrose-testing = { id = "com.pambrose.testinging", version.ref = "pambrose-plugins" }
+pambrose-testing = { id = "com.pambrose.testing", version.ref = "pambrose-plugins" }
 ```
 
 In your **build.gradle.kts**, apply the plugins using `alias()`:
@@ -205,13 +205,13 @@ Use `apply false` to resolve the plugin version without applying the plugin to t
 
 ```kotlin
 plugins {
-  id("com.pambrose.envvar") version "1.0.7" apply false
-  id("com.pambrose.stable-versions") version "1.0.7" apply false
-  id("com.pambrose.kotlinter") version "1.0.7" apply false
-  id("com.pambrose.publishing") version "1.0.7" apply false
-  id("com.pambrose.repos") version "1.0.7" apply false
-  id("com.pambrose.snapshot") version "1.0.7" apply false
-  id("com.pambrose.testinging") version "1.0.7" apply false
+  id("com.pambrose.envvar") version "1.0.8" apply false
+  id("com.pambrose.stable-versions") version "1.0.8" apply false
+  id("com.pambrose.kotlinter") version "1.0.8" apply false
+  id("com.pambrose.publishing") version "1.0.8" apply false
+  id("com.pambrose.repos") version "1.0.8" apply false
+  id("com.pambrose.snapshot") version "1.0.8" apply false
+  id("com.pambrose.testing") version "1.0.8" apply false
 }
 ```
 
@@ -222,7 +222,7 @@ Apply only the plugins each subproject needs, without specifying a version:
 ```kotlin
 plugins {
   id("com.pambrose.repos")
-  id("com.pambrose.testinging")
+  id("com.pambrose.testing")
   id("com.pambrose.kotlinter")
 }
 ```
@@ -259,7 +259,7 @@ To apply a plugin to every subproject, use a `subprojects` block in the root **b
 ```kotlin
 subprojects {
   apply(plugin = "com.pambrose.repos")
-  apply(plugin = "com.pambrose.testinging")
+  apply(plugin = "com.pambrose.testing")
 }
 ```
 

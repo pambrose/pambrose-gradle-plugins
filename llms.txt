@@ -1,0 +1,59 @@
+# pambrose-gradle-plugins
+
+> Shared Gradle convention plugins for Kotlin JVM projects, distributed via JitPack.
+
+## Overview
+
+A multi-plugin Gradle convention plugin project built with Kotlin DSL. Each plugin implements
+`Plugin<Project>` and lives in `src/main/kotlin/com/pambrose/`. Plugins are registered in
+`build.gradle.kts` using a `plugin()` helper that derives the plugin ID (`com.pambrose.<id>`)
+and implementation class (`com.pambrose.<Name>`) from its arguments.
+
+Group/artifact: `com.pambrose.gradle-plugins:1.0.8`
+
+## Plugins
+
+- `com.pambrose.testing`: Configures JUnit Platform with verbose test logging (passed/skipped/failed events, full exception format).
+- `com.pambrose.publishing`: Applies `maven-publish` and `java`, generates a sources JAR, creates a `maven` publication.
+- `com.pambrose.stable-versions`: Applies ben-manes `versions` plugin, rejects RC/beta/alpha/milestone versions from dependency updates.
+- `com.pambrose.envvar`: Loads environment variables from `secrets/secrets.env` (configurable) into `JavaExec` and `Test` tasks. Parsed values accessible via `envvar.vars`.
+- `com.pambrose.kotlinter`: Applies the kotlinter plugin with `checkstyle` and `plain` reporters.
+- `com.pambrose.repos`: Adds Google, Maven Central, and JitPack repositories.
+- `com.pambrose.snapshot`: Disables Gradle caching for changing (SNAPSHOT) modules via `configurations.configureEach`.
+
+## Usage
+
+Add JitPack to `settings.gradle.kts` with a `resolutionStrategy` mapping `com.pambrose.*` to
+`com.github.pambrose:gradle-plugins`, then apply plugins in `build.gradle.kts`:
+
+```kotlin
+plugins {
+  id("com.pambrose.repos") version "1.0.8"
+  id("com.pambrose.testing") version "1.0.8"
+}
+```
+
+Also available via Maven Central, Maven Local, or version catalog (`libs.versions.toml`).
+
+## Tech Stack
+
+- Gradle 9.2.0, Kotlin DSL
+- Kotlin Gradle Plugin 2.3.10
+- Ben-Manes Versions Plugin 0.53.0
+- Kotlinter 5.4.2
+- Kotest 6.1.3 (tests)
+- JVM toolchain 17
+
+## Build
+
+- Build: `./gradlew build`
+- Test: `./gradlew test`
+- Publish locally: `./gradlew publishToMavenLocal`
+- Check dependency updates: `./gradlew dependencyUpdates`
+
+## Project Structure
+
+- `src/main/kotlin/com/pambrose/` -- Plugin implementations
+- `src/test/kotlin/com/pambrose/` -- Integration tests using GradleRunner
+- `build.gradle.kts` -- Build config and plugin registration
+- `gradle/libs.versions.toml` -- Version catalog

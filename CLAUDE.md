@@ -19,7 +19,7 @@ Gradle projects to share common build configuration. Distributed via JitPack (`c
 - Gradle 9.2.0 with Kotlin DSL
 - Kotlin Gradle Plugin 2.3.10
 - Ben-Manes Versions Plugin 0.53.0
-- Group/artifact: `com.pambrose.gradle:gradle-plugins:1.0.7`
+- Group/artifact: `com.pambrose.gradle:gradle-plugins:1.0.8`
 
 ## Architecture
 
@@ -36,6 +36,8 @@ the arguments.
 | `com.pambrose.publishing`      | `PublishingPlugin`     | Sets up `maven-publish` with sources JAR and a Maven publication           |
 | `com.pambrose.stable-versions` | `StableVersionsPlugin` | Filters RC/beta/alpha/milestone versions from `dependencyUpdates` results  |
 | `com.pambrose.envvar`          | `EnvVarPlugin`         | Loads env vars from `secrets/secrets.env` into `JavaExec` and `Test` tasks |
+| `com.pambrose.repos`           | `ReposPlugin`          | Adds Google, Maven Central, and JitPack repositories                      |
+| `com.pambrose.kotlinter`       | `KotlinterPlugin`      | Applies kotlinter with checkstyle and plain reporters                      |
 | `com.pambrose.snapshot`        | `SnapshotPlugin`       | Disables Gradle caching for changing (SNAPSHOT) modules                    |
 
 ### Adding a New Plugin

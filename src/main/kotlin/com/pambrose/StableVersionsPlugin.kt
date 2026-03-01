@@ -20,10 +20,7 @@ class StableVersionsPlugin : Plugin<Project> {
   }
 
   companion object {
-    internal fun isNonStable(version: String): Boolean {
-      val betaKeyword = listOf("-RC", "-BETA", "-ALPHA", "-M").any { version.uppercase().contains(it) }
-      val isStable = !betaKeyword
-      return !isStable
-    }
+    internal fun isNonStable(version: String): Boolean =
+      listOf("-RC", "-BETA", "-ALPHA", "-M").any { version.uppercase().contains(it) }
   }
 }

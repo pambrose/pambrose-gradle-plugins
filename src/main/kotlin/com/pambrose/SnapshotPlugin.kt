@@ -6,7 +6,7 @@ import org.gradle.api.Project
 class SnapshotPlugin : Plugin<Project> {
   override fun apply(project: Project) {
     with(project) {
-      configurations.all {
+      configurations.configureEach {
         resolutionStrategy.cacheChangingModulesFor(0, "seconds")
       }
     }

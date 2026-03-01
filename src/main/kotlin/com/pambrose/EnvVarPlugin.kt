@@ -25,7 +25,7 @@ class EnvVarPlugin : Plugin<Project> {
             .filter { it.isNotEmpty() && !it.startsWith("#") }
             .mapNotNull { line ->
               val idx = line.indexOf('=')
-              if (idx > 0) line.substring(0, idx) to line.substring(idx + 1) else null
+              if (idx > 0) line.substring(0, idx).trim() to line.substring(idx + 1).trim() else null
             }
             .toMap()
 

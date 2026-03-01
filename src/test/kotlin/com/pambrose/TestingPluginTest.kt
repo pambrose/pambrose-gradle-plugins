@@ -42,7 +42,7 @@ class TestingPluginTest : StringSpec(
         .build()
 
       result.output shouldContain "JUNIT_PLATFORM=true"
-      result.output shouldContain "SHOW_STANDARD_STREAMS=true"
+      result.output shouldContain "SHOW_STANDARD_STREAMS=false"
       result.output shouldContain "EXCEPTION_FORMAT=FULL"
     }
   },
