@@ -9,7 +9,7 @@ A multi-plugin Gradle convention plugin project built with Kotlin DSL. Each plug
 `build.gradle.kts` using a `plugin()` helper that derives the plugin ID (`com.pambrose.<id>`)
 and implementation class (`com.pambrose.<Name>`) from its arguments.
 
-Group/artifact: `com.pambrose.gradle-plugins:1.0.9`
+Group/artifact: `com.pambrose.gradle-plugins:1.0.10`
 
 ## Plugins
 
@@ -28,8 +28,8 @@ Add JitPack to `settings.gradle.kts` with a `resolutionStrategy` mapping `com.pa
 
 ```kotlin
 plugins {
-  id("com.pambrose.repos") version "1.0.9"
-  id("com.pambrose.testing") version "1.0.9"
+  id("com.pambrose.repos") version "1.0.10"
+  id("com.pambrose.testing") version "1.0.10"
 }
 ```
 
