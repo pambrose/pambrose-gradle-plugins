@@ -91,7 +91,7 @@ plugins {
 }
 ```
 
-Replace `Tag` with a GitHub release tag (e.g., `1.0.8`), a short commit hash, or `main-SNAPSHOT` for the latest commit
+Replace `Tag` with a GitHub release tag (e.g., `1.0.9`), a short commit hash, or `main-SNAPSHOT` for the latest commit
 on `main`.
 
 ### From Maven Central
@@ -111,13 +111,13 @@ In your **build.gradle.kts**, apply the desired plugins:
 
 ```kotlin
 plugins {
-  id("com.pambrose.envvar") version "1.0.8"
-  id("com.pambrose.stable-versions") version "1.0.8"
-  id("com.pambrose.kotlinter") version "1.0.8"
-  id("com.pambrose.publishing") version "1.0.8"
-  id("com.pambrose.repos") version "1.0.8"
-  id("com.pambrose.snapshot") version "1.0.8"
-  id("com.pambrose.testing") version "1.0.8"
+  id("com.pambrose.envvar") version "1.0.9"
+  id("com.pambrose.stable-versions") version "1.0.9"
+  id("com.pambrose.kotlinter") version "1.0.9"
+  id("com.pambrose.publishing") version "1.0.9"
+  id("com.pambrose.repos") version "1.0.9"
+  id("com.pambrose.snapshot") version "1.0.9"
+  id("com.pambrose.testing") version "1.0.9"
 }
 ```
 
@@ -146,13 +146,13 @@ In your **build.gradle.kts**:
 
 ```kotlin
 plugins {
-  id("com.pambrose.envvar") version "1.0.8"
-  id("com.pambrose.stable-versions") version "1.0.8"
-  id("com.pambrose.kotlinter") version "1.0.8"
-  id("com.pambrose.publishing") version "1.0.8"
-  id("com.pambrose.repos") version "1.0.8"
-  id("com.pambrose.snapshot") version "1.0.8"
-  id("com.pambrose.testing") version "1.0.8"
+  id("com.pambrose.envvar") version "1.0.9"
+  id("com.pambrose.stable-versions") version "1.0.9"
+  id("com.pambrose.kotlinter") version "1.0.9"
+  id("com.pambrose.publishing") version "1.0.9"
+  id("com.pambrose.repos") version "1.0.9"
+  id("com.pambrose.snapshot") version "1.0.9"
+  id("com.pambrose.testing") version "1.0.9"
 }
 ```
 
@@ -165,7 +165,7 @@ In your **gradle/libs.versions.toml**, define the version and plugin aliases:
 
 ```toml
 [versions]
-pambrose-plugins = "1.0.8"
+pambrose-plugins = "1.0.9"
 
 [plugins]
 pambrose-envvar = { id = "com.pambrose.envvar", version.ref = "pambrose-plugins" }
@@ -205,13 +205,13 @@ Use `apply false` to resolve the plugin version without applying the plugin to t
 
 ```kotlin
 plugins {
-  id("com.pambrose.envvar") version "1.0.8" apply false
-  id("com.pambrose.stable-versions") version "1.0.8" apply false
-  id("com.pambrose.kotlinter") version "1.0.8" apply false
-  id("com.pambrose.publishing") version "1.0.8" apply false
-  id("com.pambrose.repos") version "1.0.8" apply false
-  id("com.pambrose.snapshot") version "1.0.8" apply false
-  id("com.pambrose.testing") version "1.0.8" apply false
+  id("com.pambrose.envvar") version "1.0.9" apply false
+  id("com.pambrose.stable-versions") version "1.0.9" apply false
+  id("com.pambrose.kotlinter") version "1.0.9" apply false
+  id("com.pambrose.publishing") version "1.0.9" apply false
+  id("com.pambrose.repos") version "1.0.9" apply false
+  id("com.pambrose.snapshot") version "1.0.9" apply false
+  id("com.pambrose.testing") version "1.0.9" apply false
 }
 ```
 

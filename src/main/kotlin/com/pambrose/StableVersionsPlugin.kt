@@ -20,7 +20,9 @@ class StableVersionsPlugin : Plugin<Project> {
   }
 
   companion object {
+    private val UNSTABLE_QUALIFIERS = listOf("-RC", "-BETA", "-ALPHA", "-M")
+
     internal fun isNonStable(version: String): Boolean =
-      listOf("-RC", "-BETA", "-ALPHA", "-M").any { version.uppercase().contains(it) }
+      UNSTABLE_QUALIFIERS.any { version.uppercase().contains(it) }
   }
 }
