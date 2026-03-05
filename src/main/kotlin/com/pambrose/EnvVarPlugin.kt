@@ -38,8 +38,8 @@ class EnvVarPlugin : Plugin<Project> {
         JVM process will have those environment variables set — alongside the system's
         existing environment variables.
          */
-        tasks.withType<JavaExec> { environment(envVars) }
-        tasks.withType<Test> { environment(envVars) }
+        tasks.withType<JavaExec>().configureEach { environment(envVars) }
+        tasks.withType<Test>().configureEach { environment(envVars) }
       }
     }
   }
