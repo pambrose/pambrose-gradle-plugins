@@ -1,4 +1,4 @@
-VERSION=$(shell grep '^version' build.gradle.kts | sed 's/.*"\(.*\)"/\1/')
+VERSION=$(shell grep '^version\s*=' build.gradle.kts | sed 's/.*"\(.*\)"/\1/')
 
 default: versioncheck
 
@@ -33,4 +33,4 @@ refresh:
 	./gradlew --refresh-dependencies
 
 upgrade-wrapper:
-	./gradlew wrapper --gradle-version=9.2.0 --distribution-type=bin
+	./gradlew wrapper --gradle-version=9.4.0 --distribution-type=bin
