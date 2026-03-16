@@ -33,4 +33,4 @@ refresh:
 	./gradlew --refresh-dependencies
 
 upgrade-wrapper:
-	./gradlew wrapper --gradle-version=9.2.0 --distribution-type=bin
+	./gradlew wrapper --gradle-version=9.4.0 --distribution-type=bin
