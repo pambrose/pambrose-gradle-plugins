@@ -1,7 +1,6 @@
 import com.github.benmanes.gradle.versions.updates.DependencyUpdatesTask
 import org.gradle.plugins.signing.Sign
 import com.vanniktech.maven.publish.JavadocJar
-import com.vanniktech.maven.publish.SourcesJar
 import org.gradle.api.tasks.testing.logging.TestExceptionFormat
 import org.gradle.api.tasks.testing.logging.TestLogEvent
 
@@ -72,9 +71,9 @@ gradlePlugin {
 
 mavenPublishing {
   configure(
-    com.vanniktech.maven.publish.KotlinJvm(
+    com.vanniktech.maven.publish.GradlePlugin(
       javadocJar = JavadocJar.Dokka("dokkaGeneratePublicationHtml"),
-      sourcesJar = SourcesJar.Sources(),
+      sourcesJar = true,
     ),
   )
   coordinates("com.pambrose", "pambrose-gradle-plugins", version.toString())
