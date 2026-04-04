@@ -1,4 +1,10 @@
-# gradle-plugins
+# pambrose-gradle-plugins
+
+![GitHub release (latest by date)](https://img.shields.io/github/v/release/pambrose/pambrose-gradle-plugins)
+[![Maven Central](https://img.shields.io/maven-central/v/com.pambrose/pambrose-gradle-plugins)](https://central.sonatype.com/artifact/com.pambrose.pambrose-gradle-plugins)
+[![Kotlin version](https://img.shields.io/badge/kotlin-2.3.20-red?logo=kotlin)](http://kotlinlang.org)
+[![ktlint](https://img.shields.io/badge/ktlint%20code--style-%E2%9D%A4-FF4081)](https://pinterest.github.io/ktlint/)
+[![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](https://www.apache.org/licenses/LICENSE-2.0)
 
 Shared Gradle convention plugins for Kotlin JVM projects.
 
