@@ -1,14 +1,19 @@
 import com.github.benmanes.gradle.versions.updates.DependencyUpdatesTask
+import com.vanniktech.maven.publish.JavadocJar
+import com.vanniktech.maven.publish.SourcesJar
+import org.gradle.api.tasks.testing.logging.TestExceptionFormat
+import org.gradle.api.tasks.testing.logging.TestLogEvent
 
 plugins {
   `kotlin-dsl`
-  `maven-publish`
   `java-gradle-plugin`
   alias(libs.plugins.ben.manes.versions)
+  alias(libs.plugins.dokka)
+  alias(libs.plugins.maven.publish)
 }
 
-group = "com.pambrose.gradle-plugins"
-version = "1.0.11"
+version = findProperty("overrideVersion")?.toString() ?: "1.0.12"
+group = "com.pambrose"
 
 repositories {
   mavenCentral()
@@ -30,6 +35,11 @@ kotlin {
 
 tasks.test {
   useJUnitPlatform()
+  testLogging {
+    events = setOf(TestLogEvent.PASSED, TestLogEvent.SKIPPED, TestLogEvent.FAILED)
+    exceptionFormat = TestExceptionFormat.FULL
+    showStandardStreams = false
+  }
 }
 
 tasks.withType<DependencyUpdatesTask> {
@@ -54,9 +64,44 @@ gradlePlugin {
     plugin("EnvVarPlugin", "envvar")
     plugin("StableVersionsPlugin", "stable-versions")
     plugin("PublishingPlugin", "publishing")
-    plugin("ReposPlugin", "repos")
-    plugin("SnapshotPlugin", "snapshot")
     plugin("KotlinterPlugin", "kotlinter")
     plugin("TestingPlugin", "testing")
   }
+}
+
+mavenPublishing {
+  configure(
+    com.vanniktech.maven.publish.KotlinJvm(
+      javadocJar = JavadocJar.Dokka("dokkaGeneratePublicationHtml"),
+      sourcesJar = SourcesJar.Sources(),
+    ),
+  )
+  coordinates("com.pambrose", "pambrose-gradle-plugins", version.toString())
+
+  pom {
+    name.set("pambrose-gradle-plugins")
+    description.set("Helpful Gradle plugins for Java and Kotlin projects")
+    url.set("https://github.com/pambrose/pambrose-gradle-plugins")
+    licenses {
+      license {
+        name.set("Apache License 2.0")
+        url.set("https://www.apache.org/licenses/LICENSE-2.0")
+      }
+    }
+    developers {
+      developer {
+        id.set("pambrose")
+        name.set("Paul Ambrose")
+        email.set("paul@pambrose.com")
+      }
+    }
+    scm {
+      connection.set("scm:git:git://github.com/pambrose/pambrose-gradle-plugins.git")
+      developerConnection.set("scm:git:ssh://github.com/pambrose/pambrose-gradle-plugins.git")
+      url.set("https://github.com/pambrose/pambrose-gradle-plugins")
+    }
+  }
+
+  publishToMavenCentral(automaticRelease = true)
+  signAllPublications()
 }

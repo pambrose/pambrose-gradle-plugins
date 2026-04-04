@@ -26,7 +26,7 @@ boilerplate. All issues found during review have been resolved.
 
 | Issue | Resolution |
 |---|---|
-| **CLAUDE.md missing plugins** -- table listed 5 plugins but project has 7 | Added `ReposPlugin` and `KotlinterPlugin` to the table |
+| **CLAUDE.md missing plugins** -- table listed 5 plugins but project has 7 | Added `KotlinterPlugin` to the table |
 | **CLAUDE.md version mismatch** -- version didn't match `build.gradle.kts` | Versions synchronized across all files |
 
 ### Low Priority
@@ -35,7 +35,6 @@ boilerplate. All issues found during review have been resolved.
 |---|---|
 | **`isNonStable` double negation** in `StableVersionsPlugin` | Simplified to single expression |
 | **`afterEvaluate` in `PublishingPlugin`** -- unnecessary since `components["java"]` is available after applying the `java` plugin | Removed `afterEvaluate` wrapper |
-| **`configurations.all` in `SnapshotPlugin`** -- eagerly resolves all configurations | Changed to `configurations.configureEach` |
 | **Duplicated version filter** in `build.gradle.kts` -- repeated `StableVersionsPlugin` logic | Removed redundant filter and unused import |
 | **EnvVar key/value trimming** -- keys and values with spaces around `=` were not trimmed | Added `.trim()` to both key and value after splitting |
 
@@ -59,9 +58,6 @@ would require switching to Gradle's `Property<String>` API, which changes the us
 
 Test coverage is solid -- every plugin has at least one integration test using GradleRunner. Minor gaps:
 
-- **SnapshotPluginTest**: Verifies the plugin applies without error but doesn't assert that
-  `cacheChangingModulesFor(0, "seconds")` was actually configured
-- **ReposPluginTest**: Checks Google and JitPack URLs but doesn't verify Maven Central is present
 
 ---
 
@@ -70,5 +66,5 @@ Test coverage is solid -- every plugin has at least one integration test using G
 - **Gradle 9.2.0** with configuration cache enabled
 - **JVM toolchain 17**
 - **Kotest 6.1.3** with JUnit Platform runner
-- **JitPack distribution** via `jitpack.yml`
+- **Maven Central distribution** via vanniktech maven-publish plugin
 - **All 24 tests passing**
