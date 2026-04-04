@@ -1,6 +1,6 @@
 # pambrose-gradle-plugins
 
-> Shared Gradle convention plugins for Kotlin JVM projects, distributed via JitPack.
+> Shared Gradle convention plugins for Kotlin JVM projects, distributed via Maven Central.
 
 ## Overview
 
@@ -9,7 +9,7 @@ A multi-plugin Gradle convention plugin project built with Kotlin DSL. Each plug
 `build.gradle.kts` using a `plugin()` helper that derives the plugin ID (`com.pambrose.<id>`)
 and implementation class (`com.pambrose.<Name>`) from its arguments.
 
-Group/artifact: `com.pambrose.gradle-plugins:1.0.11`
+Group/artifact: `com.pambrose.gradle-plugins:1.0.12`
 
 ## Plugins
 
@@ -18,22 +18,18 @@ Group/artifact: `com.pambrose.gradle-plugins:1.0.11`
 - `com.pambrose.stable-versions`: Applies ben-manes `versions` plugin, rejects RC/beta/alpha/milestone versions from dependency updates.
 - `com.pambrose.envvar`: Loads environment variables from `secrets/secrets.env` (configurable) into `JavaExec` and `Test` tasks. Parsed values accessible via `envvar.vars`.
 - `com.pambrose.kotlinter`: Applies the kotlinter plugin with `checkstyle` and `plain` reporters.
-- `com.pambrose.repos`: Adds Google, Maven Central, and JitPack repositories.
-- `com.pambrose.snapshot`: Disables Gradle caching for changing (SNAPSHOT) modules via `configurations.configureEach`.
 
 ## Usage
 
-Add JitPack to `settings.gradle.kts` with a `resolutionStrategy` mapping `com.pambrose.*` to
-`com.github.pambrose:gradle-plugins`, then apply plugins in `build.gradle.kts`:
+Add Maven Central to `pluginManagement` repositories in `settings.gradle.kts`, then apply plugins in `build.gradle.kts`:
 
 ```kotlin
 plugins {
-  id("com.pambrose.repos") version "1.0.11"
-  id("com.pambrose.testing") version "1.0.11"
+  id("com.pambrose.testing") version "1.0.12"
 }
 ```
 
-Also available via Maven Central, Maven Local, or version catalog (`libs.versions.toml`).
+Also available via Maven Local or version catalog (`libs.versions.toml`).
 
 ## Tech Stack
 

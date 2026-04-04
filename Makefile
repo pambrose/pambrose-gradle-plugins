@@ -1,4 +1,4 @@
-VERSION=$(shell grep '^version\s*=' build.gradle.kts | sed 's/.*"\(.*\)"/\1/')
+VERSION=$(shell grep '^version =' build.gradle.kts | head -1 | sed 's/.*"\(.*\)"/\1/')
 
 default: versioncheck
 
@@ -20,17 +20,27 @@ tree:
 depends:
 	./gradlew dependencies
 
-trigger-build:
-	curl -s "https://jitpack.io/com/github/pambrose/pambrose-gradle-plugins/${VERSION}/build.log"
-
-view-build:
-	curl -s "https://jitpack.io/api/builds/com.github.pambrose/pambrose-gradle-plugins/${VERSION}" | python3 -m json.tool
-
 versioncheck:
 	./gradlew dependencyUpdates --no-configuration-cache
 
 refresh:
 	./gradlew --refresh-dependencies
+
+publish-local:
+	./gradlew publishToMavenLocal
+
+publish-local-snapshot:
+	./gradlew -PoverrideVersion=$(VERSION)-SNAPSHOT publishToMavenLocal
+
+publish-snapshot:
+	ORG_GRADLE_PROJECT_signingInMemoryKey="$$(gpg --armor --export-secret-keys $$GPG_SIGNING_KEY_ID)" \
+	ORG_GRADLE_PROJECT_signingInMemoryKeyPassword=$$(security find-generic-password -a "gpg-signing" -s "gradle-signing-password" -w) \
+	./gradlew -PoverrideVersion=$(VERSION)-SNAPSHOT publishToMavenCentral
+
+publish-maven-central:
+	ORG_GRADLE_PROJECT_signingInMemoryKey="$$(gpg --armor --export-secret-keys $$GPG_SIGNING_KEY_ID)" \
+	ORG_GRADLE_PROJECT_signingInMemoryKeyPassword=$$(security find-generic-password -a "gpg-signing" -s "gradle-signing-password" -w) \
+	./gradlew publishAndReleaseToMavenCentral
 
 upgrade-wrapper:
 	./gradlew wrapper --gradle-version=9.4.1 --distribution-type=bin

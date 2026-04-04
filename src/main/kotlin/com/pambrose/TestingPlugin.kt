@@ -10,8 +10,6 @@ import org.gradle.kotlin.dsl.withType
 class TestingPlugin : Plugin<Project> {
   override fun apply(project: Project) {
     with(project) {
-      // pluginManager.apply("org.jetbrains.kotlin.jvm")
-
       tasks.withType<Test> {
         useJUnitPlatform()
         testLogging {
