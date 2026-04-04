@@ -1,4 +1,5 @@
 import com.github.benmanes.gradle.versions.updates.DependencyUpdatesTask
+import org.gradle.plugins.signing.Sign
 import com.vanniktech.maven.publish.JavadocJar
 import com.vanniktech.maven.publish.SourcesJar
 import org.gradle.api.tasks.testing.logging.TestExceptionFormat
@@ -104,4 +105,18 @@ mavenPublishing {
 
   publishToMavenCentral(automaticRelease = true)
   signAllPublications()
+}
+
+// Skip signing when no GPG key is provided (e.g., local publishing)
+tasks.withType<Sign>().configureEach {
+  isEnabled = project.findProperty("signingInMemoryKey") != null
+}
+
+// Fix implicit dependency: plugin marker publications need explicit dependency on signing
+tasks.withType<PublishToMavenRepository>().configureEach {
+  dependsOn(tasks.withType<Sign>())
+}
+
+tasks.withType<PublishToMavenLocal>().configureEach {
+  dependsOn(tasks.withType<Sign>())
 }
