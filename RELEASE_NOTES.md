@@ -5,6 +5,25 @@ see [CHANGELOG.md](CHANGELOG.md).
 
 ---
 
+## v1.1.5 — 2026-09-13
+
+A dependency-refresh maintenance release.
+
+**Highlights**
+
+- Kotest bumped to 6.2.5 (was 6.2.4), and the ben-manes versions plugin to
+  0.62.0 (was 0.61.0).
+
+**Upgrade notes**
+
+- Consuming Kotlin JVM projects now get `kotest-runner-junit5` 6.2.5 by
+  default. Set `pambroseTesting.kotestVersion = "6.2.4"` to keep the previous
+  version.
+- The injected `logback-classic` default is unchanged at 1.6.3. No API
+  changes.
+
+---
+
 ## v1.1.4 — 2026-09-07
 
 A toolchain-only maintenance release.
