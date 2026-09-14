@@ -1,0 +1,23 @@
+version: 2
+updates:
+  - package-ecosystem: gradle
+    directory: /
+    schedule:
+      interval: weekly
+    ignore:
+      # The wrapper is upgraded with `make upgrade-wrapper`, which reads the
+      # `gradle-wrapper` version from gradle/libs.versions.toml. Dependabot's
+      # wrapper update never touches that entry, leaving it stale.
+      - dependency-name: gradle-wrapper
+    groups:
+      gradle-minor-and-patch:
+        patterns: [ "*" ]
+        update-types: [ minor, patch ]
+
+  - package-ecosystem: github-actions
+    directory: /
+    schedule:
+      interval: weekly
+    groups:
+      github-actions:
+        patterns: [ "*" ]

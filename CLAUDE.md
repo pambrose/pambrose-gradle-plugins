@@ -31,13 +31,23 @@ the arguments.
 ### Versions Referenced From Plugin Code
 
 Runtime-injected dependency versions (e.g. logback-classic and kotest in `TestingPlugin`) are declared in
-`gradle/libs.versions.toml` so `dependencyUpdates` can track them. The `generateBuildConfig` task
+`gradle/libs.versions.toml` so `dependencyUpdates` and Dependabot can track them. The `generateBuildConfig` task
 writes an internal `com.pambrose.BuildConfig` object into `build/generated/sources/buildconfig/`
 that exposes these as Kotlin constants. To add another such version:
 
-1. Add the entry to `[versions]` in `libs.versions.toml`.
+1. Add the entry to `[versions]` in `libs.versions.toml`, plus a `[libraries]` entry that references it
+   via `version.ref`. Dependabot ignores `[versions]` entries no library or plugin references, even if
+   nothing in the build uses the library.
 2. Add a `const val` to the `generateBuildConfig` task's generated file in `build.gradle.kts`.
 3. Reference it from the plugin as `BuildConfig.<NAME>`.
+
+## Dependency Updates
+
+`.github/dependabot.yml` opens weekly PRs for the version catalog and GitHub Actions, grouping minor and
+patch bumps. Dependabot only edits the catalog, so a PR that bumps an injected default (logback, kotest)
+or Kotlin still needs by hand: the `llms.txt` Tech Stack, the hardcoded `kotlin("jvm") version` in the
+test fixtures, and the CHANGELOG/RELEASE_NOTES entries. The Gradle wrapper is excluded from Dependabot;
+bump `gradle-wrapper` in `libs.versions.toml` and run `make upgrade-wrapper`.
 
 ## Releasing
 
