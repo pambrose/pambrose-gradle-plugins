@@ -5,6 +5,26 @@ see [CHANGELOG.md](CHANGELOG.md).
 
 ---
 
+## v1.1.6 — 2026-09-24
+
+A dependency-refresh maintenance release.
+
+**Highlights**
+
+- Gradle wrapper bumped to 9.8.0 (was 9.7.1), logback to 1.6.4 (was 1.6.3),
+  and the ben-manes versions plugin to 0.64.0 (was 0.62.0).
+
+**Upgrade notes**
+
+- Consuming projects that apply the `java` plugin now get `logback-classic`
+  1.6.4 by default. Unlike the 1.1.2 release, this version is published on
+  Maven Central. Set `pambroseTesting.logbackVersion = "1.6.3"` to keep the
+  previous version.
+- The injected `kotest-runner-junit5` default is unchanged at 6.2.5. No API
+  changes.
+
+---
+
 ## v1.1.5 — 2026-09-13
 
 A dependency-refresh maintenance release.

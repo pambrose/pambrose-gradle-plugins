@@ -4,6 +4,12 @@ All notable changes to this project are documented here. The format follows
 [Keep a Changelog](https://keepachangelog.com/en/1.1.0/) and this project
 adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.1.6] - 2026-09-24
+
+### Changed
+- Upgraded the Gradle wrapper to 9.8.0, logback to 1.6.4, and the ben-manes versions plugin to 0.64.0.
+- The default `logback-classic` version that `TestingPlugin` injects now tracks the bump above (1.6.4), which has since been published to Maven Central. Override with `pambroseTesting.logbackVersion` to pin the previous value (1.6.3). The injected `kotest-runner-junit5` default is unchanged at 6.2.5.
+
 ## [1.1.5] - 2026-09-13
 
 ### Changed
@@ -205,6 +211,7 @@ adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 - Initial Gradle plugin project structure with multiple plugins and configuration files.
 - Project renamed from `common-gradle` to `gradle-plugins`.
 
+[1.1.6]: https://github.com/pambrose/pambrose-gradle-plugins/compare/1.1.5...1.1.6
 [1.1.5]: https://github.com/pambrose/pambrose-gradle-plugins/compare/1.1.4...1.1.5
 [1.1.4]: https://github.com/pambrose/pambrose-gradle-plugins/compare/1.1.3...1.1.4
 [1.1.3]: https://github.com/pambrose/pambrose-gradle-plugins/compare/1.1.2...1.1.3
