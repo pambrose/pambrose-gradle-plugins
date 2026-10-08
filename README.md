@@ -2,7 +2,8 @@
 
 ![GitHub release (latest by date)](https://img.shields.io/github/v/release/pambrose/pambrose-gradle-plugins)
 [![Maven Central](https://img.shields.io/maven-central/v/com.pambrose/pambrose-gradle-plugins)](https://central.sonatype.com/artifact/com.pambrose.pambrose-gradle-plugins)
-[![Kotlin version](https://img.shields.io/badge/kotlin-2.4.20-red?logo=kotlin)](http://kotlinlang.org)
+[![Tests](https://github.com/pambrose/pambrose-gradle-plugins/actions/workflows/tests.yml/badge.svg)](https://github.com/pambrose/pambrose-gradle-plugins/actions/workflows/tests.yml)
+[![Kotlin version](https://img.shields.io/badge/kotlin-2.4.21-red?logo=kotlin)](http://kotlinlang.org)
 [![ktlint](https://img.shields.io/badge/ktlint%20code--style-%E2%9D%A4-FF4081)](https://pinterest.github.io/ktlint/)
 [![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](https://www.apache.org/licenses/LICENSE-2.0)
 
@@ -83,10 +84,10 @@ In your **build.gradle.kts**, apply the desired plugins:
 
 ```kotlin
 plugins {
-  id("com.pambrose.envvar") version "1.1.6"
-  id("com.pambrose.kotlinter") version "1.1.6"
-  id("com.pambrose.publishing") version "1.1.6"
-  id("com.pambrose.testing") version "1.1.6"
+  id("com.pambrose.envvar") version "1.1.7"
+  id("com.pambrose.kotlinter") version "1.1.7"
+  id("com.pambrose.publishing") version "1.1.7"
+  id("com.pambrose.testing") version "1.1.7"
 }
 ```
 
@@ -115,10 +116,10 @@ In your **build.gradle.kts**:
 
 ```kotlin
 plugins {
-  id("com.pambrose.envvar") version "1.1.6"
-  id("com.pambrose.kotlinter") version "1.1.6"
-  id("com.pambrose.publishing") version "1.1.6"
-  id("com.pambrose.testing") version "1.1.6"
+  id("com.pambrose.envvar") version "1.1.7"
+  id("com.pambrose.kotlinter") version "1.1.7"
+  id("com.pambrose.publishing") version "1.1.7"
+  id("com.pambrose.testing") version "1.1.7"
 }
 ```
 
@@ -131,7 +132,7 @@ In your **gradle/libs.versions.toml**, define the version and plugin aliases:
 
 ```toml
 [versions]
-pambrose-plugins = "1.1.6"
+pambrose-plugins = "1.1.7"
 
 [plugins]
 pambrose-envvar = { id = "com.pambrose.envvar", version.ref = "pambrose-plugins" }
@@ -165,10 +166,10 @@ Use `apply false` to resolve the plugin version without applying the plugin to t
 
 ```kotlin
 plugins {
-  id("com.pambrose.envvar") version "1.1.6" apply false
-  id("com.pambrose.kotlinter") version "1.1.6" apply false
-  id("com.pambrose.publishing") version "1.1.6" apply false
-  id("com.pambrose.testing") version "1.1.6" apply false
+  id("com.pambrose.envvar") version "1.1.7" apply false
+  id("com.pambrose.kotlinter") version "1.1.7" apply false
+  id("com.pambrose.publishing") version "1.1.7" apply false
+  id("com.pambrose.testing") version "1.1.7" apply false
 }
 ```
 
@@ -221,3 +222,15 @@ subprojects {
 ```bash
 ./gradlew build
 ```
+
+The Makefile wraps common tasks; `make help` lists them all. A few useful ones:
+
+```bash
+make ci         # run the same checks as GitHub Actions, from a clean build
+make tests      # run the test suite
+make versions   # report dependency updates, including the versions TestingPlugin injects
+make zizmor     # audit the GitHub Actions workflows (requires zizmor)
+```
+
+GitHub Actions runs the test suite and a [zizmor](https://docs.zizmor.sh) security audit of the workflows on every
+push and pull request to `master`.

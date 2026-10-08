@@ -24,12 +24,23 @@ repositories {
   gradlePluginPortal()
 }
 
+// Declares the dependency versions that plugins inject into consuming projects (see generateBuildConfig).
+// Nothing in the build resolves them; the resolvable configuration exists only because dependencyUpdates
+// skips configurations that cannot be resolved.
+val injectedDefaults = configurations.dependencyScope("injectedDefaults")
+configurations.resolvable("injectedDefaultsClasspath") {
+  extendsFrom(injectedDefaults.get())
+}
+
 dependencies {
   implementation(libs.kotlin.gradle.plugin)
   implementation(libs.kotlinter.gradle)
 
   testImplementation(libs.kotest.runner.junit5)
   testImplementation(libs.kotest.assertions.core)
+
+  injectedDefaults(libs.logback.classic)
+  injectedDefaults(libs.kotest.runner.junit5)
 }
 
 kotlin {

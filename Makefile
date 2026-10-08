@@ -1,5 +1,5 @@
 .PHONY: default help stop clean build tests tree refresh kdocs versions \
-        publish-local publish-local-snapshot publish-snapshot publish-maven-central upgrade-wrapper \
+        publish-local publish-local-snapshot publish-snapshot publish-maven-central upgrade-wrapper zizmor ci \
         _check-gpg-env _require-version _require-gradle-version
 
 VERSION := $(shell sed -n 's/^version=\(.*\)/\1/p' gradle.properties)
@@ -60,6 +60,18 @@ publish-maven-central: _require-version _check-gpg-env ## Publish and release to
 upgrade-wrapper: _require-gradle-version ## Upgrade Gradle wrapper to version in libs.versions.toml
 	./gradlew wrapper --gradle-version=$(GRADLE_VERSION) --distribution-type=bin
 	./gradlew wrapper --gradle-version=$(GRADLE_VERSION) --distribution-type=bin
+
+# Uses online audits when GH_TOKEN is set; otherwise runs offline.
+zizmor: ## Audit GitHub Actions workflows and Dependabot config with zizmor
+	zizmor .
+
+# Mirrors the GitHub Actions workflows (zizmor.yml, tests.yml, and dokka.yml's build job), starting from a
+# clean build directory as a fresh checkout does. zizmor runs its online audits, as in CI, when GH_TOKEN is
+# set or gh is logged in; an empty GH_TOKEN makes zizmor fail, so it is only exported when non-empty.
+ci: ## Run the GitHub Actions checks locally (zizmor, tests, Dokka build)
+	@if [ -z "$$GH_TOKEN" ] && token=$$(gh auth token 2>/dev/null); then export GH_TOKEN="$$token"; fi; \
+		$(MAKE) --no-print-directory zizmor
+	./gradlew clean test dokkaGeneratePublicationHtml
 
 _check-gpg-env:
 	@if [ -z "$$GPG_SIGNING_KEY_ID" ]; then \

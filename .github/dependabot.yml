@@ -4,6 +4,8 @@ updates:
     directory: /
     schedule:
       interval: weekly
+    cooldown:
+      default-days: 7
     ignore:
       # The wrapper is upgraded with `make upgrade-wrapper`, which reads the
       # `gradle-wrapper` version from gradle/libs.versions.toml. Dependabot's
@@ -18,6 +20,8 @@ updates:
     directory: /
     schedule:
       interval: weekly
+    cooldown:
+      default-days: 7
     groups:
       github-actions:
         patterns: [ "*" ]

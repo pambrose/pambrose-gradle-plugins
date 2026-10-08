@@ -5,6 +5,36 @@ see [CHANGELOG.md](CHANGELOG.md).
 
 ---
 
+## v1.1.7 — 2026-10-08
+
+A dependency-refresh and CI release.
+
+**Highlights**
+
+- logback bumped to 1.6.5 (was 1.6.4), the Kotlin Gradle Plugin to 2.4.21
+  (was 2.4.20), the Gradle wrapper to 9.8.1 (was 9.8.0), and the ben-manes
+  versions plugin to 0.65.0 (was 0.64.0).
+- Tests now run in GitHub Actions on every push and pull request to
+  `master`, and a zizmor workflow (also runnable as `make zizmor`) audits the
+  workflows and Dependabot config. `make ci` runs the same checks locally.
+- The Dokka workflow moved to the latest major versions of its actions, and
+  every workflow now pins its actions to commit SHAs and grants each job only
+  the permissions it needs. Dependabot waits 7 days before proposing a new
+  release.
+- `make versions` now reports the `logback-classic` and
+  `kotest-runner-junit5` versions that `TestingPlugin` injects. New logback
+  releases were previously invisible to it.
+
+**Upgrade notes**
+
+- Consuming projects that apply the `java` plugin now get `logback-classic`
+  1.6.5 by default. Set `pambroseTesting.logbackVersion = "1.6.4"` to keep the
+  previous version.
+- The injected `kotest-runner-junit5` default is unchanged at 6.2.5. No API
+  changes.
+
+---
+
 ## v1.1.6 — 2026-09-24
 
 A dependency-refresh maintenance release.
