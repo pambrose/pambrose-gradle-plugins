@@ -31,23 +31,51 @@ the arguments.
 ### Versions Referenced From Plugin Code
 
 Runtime-injected dependency versions (e.g. logback-classic and kotest in `TestingPlugin`) are declared in
-`gradle/libs.versions.toml` so `dependencyUpdates` and Dependabot can track them. The `generateBuildConfig` task
+`gradle/libs.versions.toml` so Dependabot can track them, and on the `injectedDefaults` configuration so
+`dependencyUpdates` (`make versions`) can. The `generateBuildConfig` task
 writes an internal `com.pambrose.BuildConfig` object into `build/generated/sources/buildconfig/`
 that exposes these as Kotlin constants. To add another such version:
 
 1. Add the entry to `[versions]` in `libs.versions.toml`, plus a `[libraries]` entry that references it
    via `version.ref`. Dependabot ignores `[versions]` entries no library or plugin references, even if
    nothing in the build uses the library.
-2. Add a `const val` to the `generateBuildConfig` task's generated file in `build.gradle.kts`.
-3. Reference it from the plugin as `BuildConfig.<NAME>`.
+2. Declare the library on the `injectedDefaults` configuration in `build.gradle.kts`. `dependencyUpdates`
+   only checks dependencies declared on a resolvable configuration, so a catalog entry alone is invisible
+   to `make versions`.
+3. Add a `const val` to the `generateBuildConfig` task's generated file in `build.gradle.kts`.
+4. Reference it from the plugin as `BuildConfig.<NAME>`.
 
 ## Dependency Updates
 
 `.github/dependabot.yml` opens weekly PRs for the version catalog and GitHub Actions, grouping minor and
-patch bumps. Dependabot only edits the catalog, so a PR that bumps an injected default (logback, kotest)
+patch bumps, and waits 7 days after a release before proposing it. Actions are pinned to commit SHAs;
+Dependabot updates each SHA together with its `# vX.Y.Z` comment. Dependabot only edits the catalog and
+the workflows, so a PR that bumps an injected default (logback, kotest)
 or Kotlin still needs by hand: the `llms.txt` Tech Stack, the hardcoded `kotlin("jvm") version` in the
 test fixtures, and the CHANGELOG/RELEASE_NOTES entries. The Gradle wrapper is excluded from Dependabot;
 bump `gradle-wrapper` in `libs.versions.toml` and run `make upgrade-wrapper`.
+
+## CI
+
+Each workflow in `.github/workflows/` runs on pushes and pull requests to `master`:
+
+| Workflow     | Purpose                                                                                      |
+|--------------|----------------------------------------------------------------------------------------------|
+| `tests.yml`  | Runs `./gradlew test` on JDK 17                                                              |
+| `zizmor.yml` | Audits the workflows and `dependabot.yml` with zizmor; findings go to the Security tab and do not fail the job |
+| `dokka.yml`  | Builds the KDoc HTML and, on pushes to `master`, deploys it to GitHub Pages                  |
+
+`make ci` runs the same checks locally: zizmor, then `./gradlew clean test dokkaGeneratePublicationHtml`.
+Unlike the workflow, it fails on zizmor findings.
+
+Keep `make zizmor` free of findings when editing workflows. It runs offline unless `GH_TOKEN` is set, while
+CI also runs the online audits (`make ci` also uses the `gh` login). The workflows follow zizmor's hardening
+rules:
+
+- Pin every action to a full commit SHA with a `# vX.Y.Z` comment.
+- Set `permissions: { }` at the workflow level and grant each job only what it needs, with a comment on
+  each grant.
+- Check out with `persist-credentials: false`.
 
 ## Releasing
 

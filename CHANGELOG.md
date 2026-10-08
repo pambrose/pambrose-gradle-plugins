@@ -4,6 +4,24 @@ All notable changes to this project are documented here. The format follows
 [Keep a Changelog](https://keepachangelog.com/en/1.1.0/) and this project
 adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.1.7] - 2026-10-08
+
+### Changed
+- Upgraded the Gradle wrapper to 9.8.1, the Kotlin Gradle Plugin to 2.4.21, logback to 1.6.5, and the ben-manes versions plugin to 0.65.0.
+- The default `logback-classic` version that `TestingPlugin` injects now tracks the bump above (1.6.5). Override with `pambroseTesting.logbackVersion` to pin the previous value (1.6.4). The injected `kotest-runner-junit5` default is unchanged at 6.2.5.
+- Every `kotlin("jvm")` GradleRunner fixture in `TestingPluginTest` and `KotlinterPluginTest` now applies 2.4.21. Three still applied 2.3.10, which the 1.1.4 fixture update missed.
+- Bumped the Dokka workflow's actions to their latest major versions: `actions/checkout` v7, `actions/setup-java` v6, `gradle/actions/setup-gradle` v6, `actions/upload-pages-artifact` v5, and `actions/deploy-pages` v5 (#28).
+- Hardened the Dokka workflow: actions are pinned to commit SHAs, `pages: write` and `id-token: write` are granted only to the deploy job, and checkout no longer persists credentials. Dependabot now waits 7 days after a release before proposing it.
+- README gains a Tests badge and documents `make ci`, `make tests`, `make versions`, and `make zizmor`. `CLAUDE.md` and `llms.txt` describe the CI workflows and their hardening rules, and `CLAUDE.md` adds the `injectedDefaults` step for new injected versions.
+
+### Added
+- A `Tests` GitHub Actions workflow that runs `./gradlew test` on pushes and pull requests to `master`.
+- A `zizmor` GitHub Actions workflow and a `make zizmor` target that audit the workflows and Dependabot config. The workflow uploads findings to the repository's Security tab.
+- A `make ci` target that runs the GitHub Actions checks locally: zizmor (with online audits when `GH_TOKEN` is set or `gh` is logged in), then a clean `test` and Dokka HTML build.
+
+### Fixed
+- `make versions` (`dependencyUpdates`) now reports the `logback-classic` and `kotest-runner-junit5` versions that `TestingPlugin` injects. The versions plugin only checks resolvable configurations, and logback was declared nowhere but the version catalog, so its 1.6.5 release went unreported. Both are now declared on an `injectedDefaults` configuration that nothing in the build resolves.
+
 ## [1.1.6] - 2026-09-24
 
 ### Changed
@@ -211,6 +229,7 @@ adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 - Initial Gradle plugin project structure with multiple plugins and configuration files.
 - Project renamed from `common-gradle` to `gradle-plugins`.
 
+[1.1.7]: https://github.com/pambrose/pambrose-gradle-plugins/compare/1.1.6...1.1.7
 [1.1.6]: https://github.com/pambrose/pambrose-gradle-plugins/compare/1.1.5...1.1.6
 [1.1.5]: https://github.com/pambrose/pambrose-gradle-plugins/compare/1.1.4...1.1.5
 [1.1.4]: https://github.com/pambrose/pambrose-gradle-plugins/compare/1.1.3...1.1.4

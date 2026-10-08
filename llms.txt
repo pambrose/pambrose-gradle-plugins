@@ -9,7 +9,7 @@ A multi-plugin Gradle convention plugin project built with Kotlin DSL. Each plug
 `build.gradle.kts` using a `plugin()` helper that derives the plugin ID (`com.pambrose.<id>`)
 and implementation class (`com.pambrose.<Name>`) from its arguments.
 
-Group/artifact: `com.pambrose:pambrose-gradle-plugins:1.1.6`
+Group/artifact: `com.pambrose:pambrose-gradle-plugins:1.1.7`
 
 ## Plugins
 
@@ -24,7 +24,7 @@ Add Maven Central to `pluginManagement` repositories in `settings.gradle.kts`, t
 
 ```kotlin
 plugins {
-  id("com.pambrose.testing") version "1.1.6"
+  id("com.pambrose.testing") version "1.1.7"
 }
 ```
 
@@ -32,9 +32,9 @@ Also available via Maven Local or version catalog (`libs.versions.toml`).
 
 ## Tech Stack
 
-- Gradle 9.8.0, Kotlin DSL
-- Kotlin Gradle Plugin 2.4.20
-- Ben-Manes Versions Plugin 0.64.0 (plugin ID `io.github.ben-manes.versions`)
+- Gradle 9.8.1, Kotlin DSL
+- Kotlin Gradle Plugin 2.4.21
+- Ben-Manes Versions Plugin 0.65.0 (plugin ID `io.github.ben-manes.versions`)
 - Kotlinter 5.7.0
 - Kotest 6.2.5 (tests)
 - JVM toolchain 17
@@ -44,7 +44,16 @@ Also available via Maven Local or version catalog (`libs.versions.toml`).
 - Build: `./gradlew build`
 - Test: `./gradlew test`
 - Publish locally: `./gradlew publishToMavenLocal`
-- Check dependency updates: `./gradlew dependencyUpdates`
+- Check dependency updates: `./gradlew dependencyUpdates` (also reports the versions `TestingPlugin` injects)
+- Audit GitHub Actions workflows: `make zizmor` (requires the `zizmor` CLI)
+- Run the GitHub Actions checks locally: `make ci` (zizmor, then a clean `test` and Dokka build)
+
+## CI
+
+GitHub Actions runs on pushes and pull requests to `master`: `tests.yml` runs the test suite, `zizmor.yml`
+audits the workflows and Dependabot config (findings go to the Security tab), and `dokka.yml` builds the KDoc
+HTML and deploys it to GitHub Pages from `master`. Actions are pinned to commit SHAs. Dependabot proposes
+weekly version catalog and GitHub Actions updates after a 7-day cooldown.
 
 ## Project Structure
 
@@ -52,3 +61,4 @@ Also available via Maven Local or version catalog (`libs.versions.toml`).
 - `src/test/kotlin/com/pambrose/` -- Integration tests using GradleRunner
 - `build.gradle.kts` -- Build config and plugin registration
 - `gradle/libs.versions.toml` -- Version catalog
+- `.github/workflows/` -- GitHub Actions workflows (tests, zizmor, Dokka)

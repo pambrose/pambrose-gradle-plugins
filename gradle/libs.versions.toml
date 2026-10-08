@@ -1,13 +1,13 @@
 [versions]
 dokka = "2.2.0"
-gradle-wrapper = "9.8.0"
+gradle-wrapper = "9.8.1"
 jvm = "17"
 kotest = "6.2.5"
-kotlin = "2.4.20"
+kotlin = "2.4.21"
 kotlinter = "5.7.0"
-logback = "1.6.4"
+logback = "1.6.5"
 maven-publish = "0.37.0"
-versions = "0.64.0"
+versions = "0.65.0"
 
 [libraries]
 kotest-assertions-core = { module = "io.kotest:kotest-assertions-core", version.ref = "kotest" }
