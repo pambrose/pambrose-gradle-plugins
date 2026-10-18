@@ -1,4 +1,4 @@
-.PHONY: default help stop clean build tests tree refresh kdocs versions \
+.PHONY: default help stop clean build tests tree refresh kdocs versions versions-all \
         publish-local publish-local-snapshot publish-snapshot publish-maven-central upgrade-wrapper zizmor ci \
         _check-gpg-env _require-version _require-gradle-version
 
@@ -39,8 +39,13 @@ refresh: ## Refresh dependencies from remote repositories
 kdocs: ## Generate KDoc HTML documentation
 	./gradlew dokkaGeneratePublicationHtml
 
-versions: ## Report available dependency updates
+# build.gradle.kts gives dependencyUpdates a formatter that lists only what is behind; versions-all names the plugin's
+# own plain report, which also lists everything up to date.
+versions: ## List the dependencies with newer versions, and any that could not be checked
 	./gradlew dependencyUpdates --no-configuration-cache
+
+versions-all: ## The plugin's full dependency report, up-to-date dependencies included
+	./gradlew dependencyUpdates --no-configuration-cache --output-formatter=plain
 
 publish-local: _require-version ## Publish to the local Maven repository
 	./gradlew publishToMavenLocal
