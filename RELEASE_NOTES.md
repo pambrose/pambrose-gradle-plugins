@@ -5,7 +5,7 @@ see [CHANGELOG.md](CHANGELOG.md).
 
 ---
 
-## v1.1.8 — 2026-10-18
+## v1.1.8 — Unreleased
 
 A dependency-refresh maintenance release.
 

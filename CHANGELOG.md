@@ -4,7 +4,7 @@ All notable changes to this project are documented here. The format follows
 [Keep a Changelog](https://keepachangelog.com/en/1.1.0/) and this project
 adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
-## [1.1.8] - 2026-10-18
+## [1.1.8] - Unreleased
 
 ### Changed
 - Upgraded the Gradle wrapper to 9.8.2, Kotest to 6.2.6, and the ben-manes versions plugin to 0.66.0.
