@@ -1,6 +1,6 @@
 [versions]
 dokka = "2.2.0"
-gradle-wrapper = "9.8.1"
+gradle-wrapper = "9.8.2"
 jvm = "17"
 kotest = "6.2.6"
 kotlin = "2.4.21"

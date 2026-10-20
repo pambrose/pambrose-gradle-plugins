@@ -7,9 +7,11 @@ adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 ## [1.1.8] - 2026-10-18
 
 ### Changed
-- Upgraded Kotest to 6.2.6 and the ben-manes versions plugin to 0.66.0.
+- Upgraded the Gradle wrapper to 9.8.2, Kotest to 6.2.6, and the ben-manes versions plugin to 0.66.0.
 - The default `kotest-runner-junit5` version that `TestingPlugin` injects now tracks the bump above (6.2.6). Override with `pambroseTesting.kotestVersion` to pin the previous value (6.2.5). The injected `logback-classic` default is unchanged at 1.6.5.
 - `make versions` (`dependencyUpdates`) now prints only the dependencies with newer versions, plus any it could not check and any Gradle update, instead of the versions plugin's full report.
+- Renamed `CLAUDE.md` to `AGENTS.md`, which now addresses AI coding agents generally rather than Claude Code alone.
+- Moved `CODE_REVIEW.md` to `docs/CODE_REVIEW.md`.
 
 ### Added
 - A `make versions-all` target that prints the versions plugin's full plain report, up-to-date dependencies included.

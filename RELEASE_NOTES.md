@@ -11,11 +11,13 @@ A dependency-refresh maintenance release.
 
 **Highlights**
 
-- Kotest bumped to 6.2.6 (was 6.2.5) and the ben-manes versions plugin to
-  0.66.0 (was 0.65.0).
+- Kotest bumped to 6.2.6 (was 6.2.5), the Gradle wrapper to 9.8.2 (was
+  9.8.1), and the ben-manes versions plugin to 0.66.0 (was 0.65.0).
 - `make versions` now lists only what is out of date, plus anything it could
   not check. The new `make versions-all` prints the versions plugin's full
   report, up-to-date dependencies included.
+- The agent guidance file is now `AGENTS.md` (was `CLAUDE.md`), and
+  `CODE_REVIEW.md` moved to `docs/`.
 
 **Upgrade notes**
 
