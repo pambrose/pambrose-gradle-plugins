@@ -1,6 +1,6 @@
-# CLAUDE.md
+# AGENTS.md
 
-This file provides guidance to Claude Code (claude.ai/code) when working with code in this repository.
+This file provides guidance to AI coding agents when working with code in this repository.
 
 ## Project Overview
 
@@ -90,5 +90,5 @@ bumped by hand in the same commit — nothing derives it:
    bottom
 5. `RELEASE_NOTES.md` -- a new `## v<new> — YYYY-MM-DD` narrative section at the top
 
-`CLAUDE.md` intentionally carries no version numbers; the `Tech Stack` section that once did was
+`AGENTS.md` intentionally carries no version numbers; the `Tech Stack` section that once did was
 removed in 1.1.3 after drifting out of date twice.
