@@ -11,8 +11,9 @@ A dependency-refresh maintenance release.
 
 **Highlights**
 
-- Kotest bumped to 6.2.6 (was 6.2.5), the Gradle wrapper to 9.8.2 (was
-  9.8.1), and the ben-manes versions plugin to 0.66.0 (was 0.65.0).
+- Kotest bumped to 6.2.6 (was 6.2.5), logback to 1.6.6 (was 1.6.5), the
+  Gradle wrapper to 9.8.2 (was 9.8.1), and the ben-manes versions plugin to
+  0.66.0 (was 0.65.0).
 - `make versions` now lists only what is out of date, plus anything it could
   not check. The new `make versions-all` prints the versions plugin's full
   report, up-to-date dependencies included.
@@ -24,8 +25,10 @@ A dependency-refresh maintenance release.
 - Consuming projects that apply the Kotlin JVM plugin now get
   `kotest-runner-junit5` 6.2.6 by default. Set
   `pambroseTesting.kotestVersion = "6.2.5"` to keep the previous version.
-- The injected `logback-classic` default is unchanged at 1.6.5. No API
-  changes.
+- Consuming projects that apply the `java` plugin now get `logback-classic`
+  1.6.6 by default. Set `pambroseTesting.logbackVersion = "1.6.5"` to keep the
+  previous version.
+- No API changes.
 
 ---
 
