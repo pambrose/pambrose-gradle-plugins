@@ -5,6 +5,33 @@ see [CHANGELOG.md](CHANGELOG.md).
 
 ---
 
+## v1.1.8 — 2026-10-25
+
+A dependency-refresh maintenance release.
+
+**Highlights**
+
+- Kotest bumped to 6.2.6 (was 6.2.5), logback to 1.6.6 (was 1.6.5), the
+  Gradle wrapper to 9.8.2 (was 9.8.1), and the ben-manes versions plugin to
+  0.66.0 (was 0.65.0).
+- `make versions` now lists only what is out of date, plus anything it could
+  not check. The new `make versions-all` prints the versions plugin's full
+  report, up-to-date dependencies included.
+- The agent guidance file is now `AGENTS.md` (was `CLAUDE.md`), and
+  `CODE_REVIEW.md` moved to `docs/`.
+
+**Upgrade notes**
+
+- Consuming projects that apply the Kotlin JVM plugin now get
+  `kotest-runner-junit5` 6.2.6 by default. Set
+  `pambroseTesting.kotestVersion = "6.2.5"` to keep the previous version.
+- Consuming projects that apply the `java` plugin now get `logback-classic`
+  1.6.6 by default. Set `pambroseTesting.logbackVersion = "1.6.5"` to keep the
+  previous version.
+- No API changes.
+
+---
+
 ## v1.1.7 — 2026-10-08
 
 A dependency-refresh and CI release.

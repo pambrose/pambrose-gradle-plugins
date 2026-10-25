@@ -84,10 +84,10 @@ In your **build.gradle.kts**, apply the desired plugins:
 
 ```kotlin
 plugins {
-  id("com.pambrose.envvar") version "1.1.7"
-  id("com.pambrose.kotlinter") version "1.1.7"
-  id("com.pambrose.publishing") version "1.1.7"
-  id("com.pambrose.testing") version "1.1.7"
+  id("com.pambrose.envvar") version "1.1.8"
+  id("com.pambrose.kotlinter") version "1.1.8"
+  id("com.pambrose.publishing") version "1.1.8"
+  id("com.pambrose.testing") version "1.1.8"
 }
 ```
 
@@ -116,10 +116,10 @@ In your **build.gradle.kts**:
 
 ```kotlin
 plugins {
-  id("com.pambrose.envvar") version "1.1.7"
-  id("com.pambrose.kotlinter") version "1.1.7"
-  id("com.pambrose.publishing") version "1.1.7"
-  id("com.pambrose.testing") version "1.1.7"
+  id("com.pambrose.envvar") version "1.1.8"
+  id("com.pambrose.kotlinter") version "1.1.8"
+  id("com.pambrose.publishing") version "1.1.8"
+  id("com.pambrose.testing") version "1.1.8"
 }
 ```
 
@@ -132,7 +132,7 @@ In your **gradle/libs.versions.toml**, define the version and plugin aliases:
 
 ```toml
 [versions]
-pambrose-plugins = "1.1.7"
+pambrose-plugins = "1.1.8"
 
 [plugins]
 pambrose-envvar = { id = "com.pambrose.envvar", version.ref = "pambrose-plugins" }
@@ -166,10 +166,10 @@ Use `apply false` to resolve the plugin version without applying the plugin to t
 
 ```kotlin
 plugins {
-  id("com.pambrose.envvar") version "1.1.7" apply false
-  id("com.pambrose.kotlinter") version "1.1.7" apply false
-  id("com.pambrose.publishing") version "1.1.7" apply false
-  id("com.pambrose.testing") version "1.1.7" apply false
+  id("com.pambrose.envvar") version "1.1.8" apply false
+  id("com.pambrose.kotlinter") version "1.1.8" apply false
+  id("com.pambrose.publishing") version "1.1.8" apply false
+  id("com.pambrose.testing") version "1.1.8" apply false
 }
 ```
 
@@ -226,10 +226,11 @@ subprojects {
 The Makefile wraps common tasks; `make help` lists them all. A few useful ones:
 
 ```bash
-make ci         # run the same checks as GitHub Actions, from a clean build
-make tests      # run the test suite
-make versions   # report dependency updates, including the versions TestingPlugin injects
-make zizmor     # audit the GitHub Actions workflows (requires zizmor)
+make ci           # run the same checks as GitHub Actions, from a clean build
+make tests        # run the test suite
+make versions     # list outdated dependencies, including the versions TestingPlugin injects
+make versions-all # the full dependency report, up-to-date dependencies included
+make zizmor       # audit the GitHub Actions workflows (requires zizmor)
 ```
 
 GitHub Actions runs the test suite and a [zizmor](https://docs.zizmor.sh) security audit of the workflows on every
