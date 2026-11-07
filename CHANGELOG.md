@@ -4,6 +4,12 @@ All notable changes to this project are documented here. The format follows
 [Keep a Changelog](https://keepachangelog.com/en/1.1.0/) and this project
 adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.1.9] - 2026-11-06
+
+### Changed
+- Upgraded the Gradle wrapper to 9.9.0, Dokka to 2.3.0, and the ben-manes versions plugin to 0.67.0 (#36). These are build tooling only: the `kotest-runner-junit5` and `logback-classic` defaults that `TestingPlugin` injects are unchanged at 6.2.6 and 1.6.6.
+- Bumped `actions/setup-java` to 6.1.0 in the Tests and Dokka workflows, and `zizmorcore/zizmor-action` to 0.8.0 in the zizmor workflow (#34, #35).
+
 ## [1.1.8] - 2026-10-25
 
 ### Changed
@@ -241,6 +247,7 @@ adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 - Initial Gradle plugin project structure with multiple plugins and configuration files.
 - Project renamed from `common-gradle` to `gradle-plugins`.
 
+[1.1.9]: https://github.com/pambrose/pambrose-gradle-plugins/compare/1.1.8...1.1.9
 [1.1.8]: https://github.com/pambrose/pambrose-gradle-plugins/compare/1.1.7...1.1.8
 [1.1.7]: https://github.com/pambrose/pambrose-gradle-plugins/compare/1.1.6...1.1.7
 [1.1.6]: https://github.com/pambrose/pambrose-gradle-plugins/compare/1.1.5...1.1.6

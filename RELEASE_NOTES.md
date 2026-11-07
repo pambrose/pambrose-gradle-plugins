@@ -5,6 +5,25 @@ see [CHANGELOG.md](CHANGELOG.md).
 
 ---
 
+## v1.1.9 — 2026-11-06
+
+A build-tooling maintenance release.
+
+**Highlights**
+
+- The Gradle wrapper bumped to 9.9.0 (was 9.8.2), Dokka to 2.3.0 (was
+  2.2.0), and the ben-manes versions plugin to 0.67.0 (was 0.66.0).
+- The workflows moved to `actions/setup-java` 6.1.0 (was 6.0.1) and
+  `zizmorcore/zizmor-action` 0.8.0 (was 0.6.4).
+
+**Upgrade notes**
+
+- Nothing changes for consuming projects: `TestingPlugin` still injects
+  `kotest-runner-junit5` 6.2.6 and `logback-classic` 1.6.6 by default. No API
+  changes.
+
+---
+
 ## v1.1.8 — 2026-10-25
 
 A dependency-refresh maintenance release.
