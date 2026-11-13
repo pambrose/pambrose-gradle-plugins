@@ -92,3 +92,14 @@ bumped by hand in the same commit — nothing derives it:
 
 `AGENTS.md` intentionally carries no version numbers; the `Tech Stack` section that once did was
 removed in 1.1.3 after drifting out of date twice.
+
+### Publishing
+
+`make publish-maven-central` (or `make publish-snapshot` for a `-SNAPSHOT`) signs with the GPG key that
+`GPG_SIGNING_KEY_ID` names. It reads the other secrets from the macOS keychain: the signing passphrase
+(`gradle-signing-password`, account `gpg-signing`) and the Maven Central user token (`maven-central-username` and
+`maven-central-password`, account `maven-central`). The Makefile's `GPG_ENV` and `MAVEN_CENTRAL_ENV` pass them to that
+one Gradle command as `ORG_GRADLE_PROJECT_*` variables. Before that, `_check-gpg-env` and `_check-maven-central-env`
+fail with an error that names any missing entry and prints no secret. Keep the credentials in the keychain: do not add
+them to `gradle.properties`, `~/.gradle/gradle.properties`, or the build script. README.md's "Publishing to Maven
+Central" section has the commands that create the keychain entries.

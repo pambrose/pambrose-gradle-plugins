@@ -4,6 +4,12 @@ All notable changes to this project are documented here. The format follows
 [Keep a Changelog](https://keepachangelog.com/en/1.1.0/) and this project
 adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [Unreleased]
+
+### Changed
+- `make publish-maven-central` and `make publish-snapshot` now read the Maven Central user token from the macOS keychain (`maven-central-username` and `maven-central-password`, account `maven-central`), as they already read the signing passphrase. They pass it to that Gradle command alone as `mavenCentralUsername` and `mavenCentralPassword`, where before it had to come from outside the Makefile, such as `~/.gradle/gradle.properties`. A new `_check-maven-central-env` step stops either target before Gradle runs if an entry is missing or empty, naming the entry without printing its value.
+- README, `AGENTS.md`, and `llms.txt` document the publishing targets and the keychain entries they need.
+
 ## [1.1.9] - 2026-11-06
 
 ### Changed
@@ -247,6 +253,7 @@ adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 - Initial Gradle plugin project structure with multiple plugins and configuration files.
 - Project renamed from `common-gradle` to `gradle-plugins`.
 
+[Unreleased]: https://github.com/pambrose/pambrose-gradle-plugins/compare/1.1.9...HEAD
 [1.1.9]: https://github.com/pambrose/pambrose-gradle-plugins/compare/1.1.8...1.1.9
 [1.1.8]: https://github.com/pambrose/pambrose-gradle-plugins/compare/1.1.7...1.1.8
 [1.1.7]: https://github.com/pambrose/pambrose-gradle-plugins/compare/1.1.6...1.1.7
