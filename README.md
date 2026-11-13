@@ -235,3 +235,28 @@ make zizmor       # audit the GitHub Actions workflows (requires zizmor)
 
 GitHub Actions runs the test suite and a [zizmor](https://docs.zizmor.sh) security audit of the workflows on every
 push and pull request to `master`.
+
+### Publishing to Maven Central
+
+`make publish-maven-central` publishes and releases the version in `gradle.properties`, and `make publish-snapshot`
+publishes a `-SNAPSHOT` of it. Both sign with the GPG key that `GPG_SIGNING_KEY_ID` names and read their other secrets
+from the macOS keychain:
+
+| Keychain service          | Account         | Holds                                                 |
+|---------------------------|-----------------|-------------------------------------------------------|
+| `gradle-signing-password` | `gpg-signing`   | The GPG signing key's passphrase                      |
+| `maven-central-username`  | `maven-central` | The name of a user token from central.sonatype.com    |
+| `maven-central-password`  | `maven-central` | That user token's password                            |
+
+The Makefile passes them as `ORG_GRADLE_PROJECT_*` environment variables to the publishing command only, so they never
+go in `~/.gradle/gradle.properties`, which every Gradle build on the machine reads. Add the entries once; each command
+prompts for its value, which keeps it out of the shell history:
+
+```bash
+security add-generic-password -a gpg-signing -s gradle-signing-password -U -w
+security add-generic-password -a maven-central -s maven-central-username -U -w
+security add-generic-password -a maven-central -s maven-central-password -U -w
+```
+
+Both targets check for the key and the entries before Gradle runs. If one is missing, they stop with an error that
+names it without printing any secret.

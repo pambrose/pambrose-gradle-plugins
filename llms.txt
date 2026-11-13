@@ -44,6 +44,7 @@ Also available via Maven Local or version catalog (`libs.versions.toml`).
 - Build: `./gradlew build`
 - Test: `./gradlew test`
 - Publish locally: `./gradlew publishToMavenLocal`
+- Publish to Maven Central: `make publish-maven-central`, or `make publish-snapshot` for a `-SNAPSHOT`. Needs `GPG_SIGNING_KEY_ID` plus three macOS keychain entries: the signing passphrase (`gradle-signing-password`, account `gpg-signing`) and the Maven Central user token (`maven-central-username` and `maven-central-password`, account `maven-central`)
 - Check dependency updates: `./gradlew dependencyUpdates` or `make versions` (lists only outdated dependencies, including the versions `TestingPlugin` injects); `make versions-all` prints the full report
 - Audit GitHub Actions workflows: `make zizmor` (requires the `zizmor` CLI)
 - Run the GitHub Actions checks locally: `make ci` (zizmor, then a clean `test` and Dokka build)
