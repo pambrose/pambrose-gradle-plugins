@@ -8,9 +8,11 @@ on:
 
 permissions: { }
 
+# One group per ref, so runs on different PRs never cancel each other or a master deploy. A PR's newer
+# run cancels its older one; master runs queue instead, so a Pages deploy that has started finishes.
 concurrency:
-  group: pages
-  cancel-in-progress: true
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: ${{ github.event_name == 'pull_request' }}
 
 jobs:
   build:
