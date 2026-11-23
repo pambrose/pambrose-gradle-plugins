@@ -5,7 +5,7 @@ see [CHANGELOG.md](CHANGELOG.md).
 
 ---
 
-## Unreleased
+## v1.1.10 — 2026-11-23
 
 A dependency-refresh and build-tooling release.
 
@@ -15,9 +15,13 @@ A dependency-refresh and build-tooling release.
   Gradle wrapper to 9.9.2 (was 9.9.0).
 - `make publish-maven-central` and `make publish-snapshot` read the Maven
   Central user token from the macOS keychain, as they already read the signing
-  passphrase.
-- The workflows moved to `actions/setup-java` 6.3.0 (was 6.1.0), and Dokka
-  runs on different branches no longer cancel each other or a `master` deploy.
+  passphrase. README's "Publishing to Maven Central" section lists the
+  keychain entries and the commands that create them.
+- The workflows moved to `actions/setup-java` 6.3.0 (was 6.1.0),
+  `gradle/actions/setup-gradle` 6.4.1 (was 6.4.0), and
+  `zizmorcore/zizmor-action` 0.8.1 (was 0.8.0).
+- Dokka runs on different branches no longer cancel each other or a `master`
+  deploy.
 
 **Upgrade notes**
 

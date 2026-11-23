@@ -4,17 +4,17 @@ All notable changes to this project are documented here. The format follows
 [Keep a Changelog](https://keepachangelog.com/en/1.1.0/) and this project
 adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
-## [Unreleased]
+## [1.1.10] - 2026-11-23
 
 ### Changed
-- `make publish-maven-central` and `make publish-snapshot` now read the Maven Central user token from the macOS keychain (`maven-central-username` and `maven-central-password`, account `maven-central`), as they already read the signing passphrase. They pass it to that Gradle command alone as `mavenCentralUsername` and `mavenCentralPassword`, where before it had to come from outside the Makefile, such as `~/.gradle/gradle.properties`. A new `_check-maven-central-env` step stops either target before Gradle runs if an entry is missing or empty, naming the entry without printing its value.
-- README, `AGENTS.md`, and `llms.txt` document the publishing targets and the keychain entries they need.
-- Upgraded the Gradle wrapper to 9.9.2, Kotest to 6.2.7 (#42), and logback to 1.6.8. #42 bumped logback to 1.6.7; 1.6.8 was still inside Dependabot's 7-day cooldown.
+- `make publish-maven-central` and `make publish-snapshot` now read the Maven Central user token from the macOS keychain (`maven-central-username` and `maven-central-password`, account `maven-central`), as they already read the signing passphrase. They pass it to that Gradle command alone as `mavenCentralUsername` and `mavenCentralPassword`, where before it had to come from outside the Makefile, such as `~/.gradle/gradle.properties`. A new `_check-maven-central-env` step stops either target before Gradle runs if an entry is missing or empty, naming the entry without printing its value (#39).
+- README, `AGENTS.md`, and `llms.txt` document the publishing targets and the keychain entries they need (#39).
+- Upgraded the Gradle wrapper to 9.9.2, Kotest to 6.2.7, and logback to 1.6.8 (#42, #43). #42 bumped logback to 1.6.7; 1.6.8 was still inside Dependabot's 7-day cooldown.
 - The default `kotest-runner-junit5` and `logback-classic` versions that `TestingPlugin` injects now track the bumps above (6.2.7 and 1.6.8). Override with `pambroseTesting.kotestVersion` or `pambroseTesting.logbackVersion` to pin the previous values (6.2.6 and 1.6.6).
-- Bumped `actions/setup-java` to 6.3.0 in the Tests and Dokka workflows (#40, #41). 6.3.0 stops registering the Java problem matcher by default, which changes nothing here: the matcher reads javac output, and this build compiles Kotlin.
+- Bumped `actions/setup-java` to 6.3.0 (#40, #41) and `gradle/actions/setup-gradle` to 6.4.1 (#38) in the Tests and Dokka workflows, and `zizmorcore/zizmor-action` to 0.8.1 in the zizmor workflow (#38). setup-java 6.3.0 stops registering the Java problem matcher by default, which changes nothing here: the matcher reads javac output, and this build compiles Kotlin.
 
 ### Fixed
-- Dokka workflow runs no longer cancel runs from other branches. Every run shared one `pages` concurrency group with `cancel-in-progress: true`, so when Dependabot opened two PRs together one PR's docs build was always cancelled, and a PR opened during a `master` deploy cancelled the deploy. Each ref now has its own group: a PR's newer run still cancels its older one, while `master` runs queue so a deploy that has started finishes.
+- Dokka workflow runs no longer cancel runs from other branches. Every run shared one `pages` concurrency group with `cancel-in-progress: true`, so when Dependabot opened two PRs together one PR's docs build was always cancelled, and a PR opened during a `master` deploy cancelled the deploy. Each ref now has its own group: a PR's newer run still cancels its older one, while `master` runs queue so a deploy that has started finishes (#43).
 
 ## [1.1.9] - 2026-11-06
 
@@ -259,7 +259,8 @@ adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 - Initial Gradle plugin project structure with multiple plugins and configuration files.
 - Project renamed from `common-gradle` to `gradle-plugins`.
 
-[Unreleased]: https://github.com/pambrose/pambrose-gradle-plugins/compare/1.1.9...HEAD
+[Unreleased]: https://github.com/pambrose/pambrose-gradle-plugins/compare/1.1.10...HEAD
+[1.1.10]: https://github.com/pambrose/pambrose-gradle-plugins/compare/1.1.9...1.1.10
 [1.1.9]: https://github.com/pambrose/pambrose-gradle-plugins/compare/1.1.8...1.1.9
 [1.1.8]: https://github.com/pambrose/pambrose-gradle-plugins/compare/1.1.7...1.1.8
 [1.1.7]: https://github.com/pambrose/pambrose-gradle-plugins/compare/1.1.6...1.1.7
