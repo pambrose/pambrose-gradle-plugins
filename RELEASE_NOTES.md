@@ -5,6 +5,32 @@ see [CHANGELOG.md](CHANGELOG.md).
 
 ---
 
+## Unreleased
+
+A dependency-refresh and build-tooling release.
+
+**Highlights**
+
+- Kotest bumped to 6.2.7 (was 6.2.6), logback to 1.6.8 (was 1.6.6), and the
+  Gradle wrapper to 9.9.2 (was 9.9.0).
+- `make publish-maven-central` and `make publish-snapshot` read the Maven
+  Central user token from the macOS keychain, as they already read the signing
+  passphrase.
+- The workflows moved to `actions/setup-java` 6.3.0 (was 6.1.0), and Dokka
+  runs on different branches no longer cancel each other or a `master` deploy.
+
+**Upgrade notes**
+
+- Consuming projects that apply the Kotlin JVM plugin now get
+  `kotest-runner-junit5` 6.2.7 by default. Set
+  `pambroseTesting.kotestVersion = "6.2.6"` to keep the previous version.
+- Consuming projects that apply the `java` plugin now get `logback-classic`
+  1.6.8 by default. Set `pambroseTesting.logbackVersion = "1.6.6"` to keep the
+  previous version.
+- No API changes.
+
+---
+
 ## v1.1.9 — 2026-11-06
 
 A build-tooling maintenance release.
