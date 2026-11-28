@@ -95,6 +95,23 @@ removed in 1.1.3 after drifting out of date twice.
 
 ### Publishing
 
+`make release` cuts the release once the bump commit is on `master` and its CI has passed. It runs
+`make release-check`, a clean build, and the tests, then asks before running `make publish-maven-central`. After the
+publish, `make release-tag` tags HEAD with the version as a lightweight tag and pushes the tag. `make release` does not
+create the GitHub release. It ends by printing the `gh release create` command and the `**Full Changelog**` link for it.
+
+`make release-check` publishes nothing. It fails unless all of these hold:
+
+- the checkout is a clean `master` that matches `origin/master`
+- the version is final and not yet on Maven Central
+- CHANGELOG.md and RELEASE_NOTES.md have dated sections for the version, and CHANGELOG.md has its compare link
+- the files steps 2–3 bump name the version and no longer name the previous version where those steps bump it
+- any existing tag for the version is on HEAD
+- every CI check for HEAD passed, including each job in `RELEASE_REQUIRED_JOBS`
+
+When renaming a workflow job, update `RELEASE_REQUIRED_JOBS` in the Makefile. When adding a file to steps 2–3,
+update `RELEASE_VERSION_FILES`.
+
 `make publish-maven-central` (or `make publish-snapshot` for a `-SNAPSHOT`) signs with the GPG key that
 `GPG_SIGNING_KEY_ID` names. It reads the other secrets from the macOS keychain: the signing passphrase
 (`gradle-signing-password`, account `gpg-signing`) and the Maven Central user token (`maven-central-username` and

@@ -32,7 +32,7 @@ Also available via Maven Local or version catalog (`libs.versions.toml`).
 
 ## Tech Stack
 
-- Gradle 9.9.2, Kotlin DSL
+- Gradle 9.9.3, Kotlin DSL
 - Kotlin Gradle Plugin 2.4.21
 - Ben-Manes Versions Plugin 0.67.0 (plugin ID `io.github.ben-manes.versions`)
 - Kotlinter 5.7.0
@@ -45,6 +45,7 @@ Also available via Maven Local or version catalog (`libs.versions.toml`).
 - Test: `./gradlew test`
 - Publish locally: `./gradlew publishToMavenLocal`
 - Publish to Maven Central: `make publish-maven-central`, or `make publish-snapshot` for a `-SNAPSHOT`. Needs `GPG_SIGNING_KEY_ID` plus three macOS keychain entries: the signing passphrase (`gradle-signing-password`, account `gpg-signing`) and the Maven Central user token (`maven-central-username` and `maven-central-password`, account `maven-central`)
+- Release: `make release` runs `make release-check` (a clean, up-to-date `master` whose CI passed, the version bumps in place, the version not yet on Maven Central), then a clean build and the tests. It asks, publishes to Maven Central, and tags and pushes the release, then prints the `gh release create` command. `make release-check` alone publishes nothing
 - Check dependency updates: `./gradlew dependencyUpdates` or `make versions` (lists only outdated dependencies, including the versions `TestingPlugin` injects); `make versions-all` prints the full report
 - Audit GitHub Actions workflows: `make zizmor` (requires the `zizmor` CLI)
 - Run the GitHub Actions checks locally: `make ci` (zizmor, then a clean `test` and Dokka build)

@@ -4,6 +4,16 @@ All notable changes to this project are documented here. The format follows
 [Keep a Changelog](https://keepachangelog.com/en/1.1.0/) and this project
 adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [Unreleased]
+
+### Added
+- A `make release` target that gates, builds, tests, publishes the version in `gradle.properties` to Maven Central after asking, then tags HEAD with it and pushes the tag. It ends by printing the `gh release create` command for the GitHub release.
+- A `make release-check` target, the gate `make release` runs first, which publishes nothing. It fails unless the checkout is a clean `master` that matches `origin/master` and every CI check and required job passed for HEAD. The version must be final and not yet on Maven Central, and CHANGELOG.md and RELEASE_NOTES.md must have dated sections for it. README.md and llms.txt must name it and no longer name the previous version where the release steps bump it.
+- A `make release-tag` target that tags HEAD with the version and pushes the tag. `make release` runs it after publishing.
+
+### Changed
+- Upgraded the Gradle wrapper to 9.9.3.
+
 ## [1.1.10] - 2026-11-23
 
 ### Changed

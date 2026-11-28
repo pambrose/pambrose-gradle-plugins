@@ -226,11 +226,13 @@ subprojects {
 The Makefile wraps common tasks; `make help` lists them all. A few useful ones:
 
 ```bash
-make ci           # run the same checks as GitHub Actions, from a clean build
-make tests        # run the test suite
-make versions     # list outdated dependencies, including the versions TestingPlugin injects
-make versions-all # the full dependency report, up-to-date dependencies included
-make zizmor       # audit the GitHub Actions workflows (requires zizmor)
+make ci            # run the same checks as GitHub Actions, from a clean build
+make tests         # run the test suite
+make versions      # list outdated dependencies, including the versions TestingPlugin injects
+make versions-all  # the full dependency report, up-to-date dependencies included
+make zizmor        # audit the GitHub Actions workflows (requires zizmor)
+make release-check # check that the checkout is ready to release the version in gradle.properties
+make release       # check, build, test, publish to Maven Central (asks first), and tag the release
 ```
 
 GitHub Actions runs the test suite and a [zizmor](https://docs.zizmor.sh) security audit of the workflows on every
@@ -260,3 +262,9 @@ security add-generic-password -a maven-central -s maven-central-password -U -w
 
 Both targets check for the key and the entries before Gradle runs. If one is missing, they stop with an error that
 names it without printing any secret.
+
+`make release` wraps `make publish-maven-central` for a final release. It publishes only from a clean `master` that
+matches `origin/master`, and only after HEAD's GitHub CI has passed and the version bumps are in place. It then runs a
+clean build and the tests, and asks before publishing. Once the publish succeeds, it tags HEAD with the version, pushes
+the tag, and prints the `gh release create` command for the GitHub release. `make release-check` runs the same checks
+and publishes nothing.
